@@ -1,4 +1,6 @@
-@import "compass/reset";
+@import "foundation/variables";
+@import "foundation/components/global";
+@import "foundation/components/grid";
 
 $useOverlay: false;
 
