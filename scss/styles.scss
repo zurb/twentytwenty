@@ -2,74 +2,13 @@
 @import "foundation/components/global";
 @import "foundation/components/grid";
 
-$useOverlay: false;
-
 .compareit-container {
-  position: relative;
-  width: 640px;
-  height: 440px;
-  @if ($useOverlay) {
-    .compareit-overlay {
-        content: ' ';
-        display: block;
-        width: 100%;
-        height: 100%;
-        background: #000;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 11;
-        opacity: 0;
-        filter: Alpha(Opacity=0);
-        -webkit-transition: all .2s linear;
-        -moz-transition: all .2s linear;
-    }
-
-    &:hover .compareit-overlay {
-        opacity: .5;
-        filter: Alpha(Opacity=50);
-    }
-
-    &.active:hover .compareit-overlay {
-        opacity: 0;
-        filter: Alpha(Opacity=0);
-    }
-  }
-  .compareit-bar {
-    width: 34px;
-    height: 100%;
-    position: absolute;
-    left: 50%;
-    margin-left: -17px;
-    background: image-url("bar.png");
-    z-index: 20;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-  }
-  .compareit-image-before {
-    position: absolute;
-    background: image-url("1_1.jpg");
-    width: 50%;
-    height: 100%;
-    left: 0;
-    z-index: 10;
-  }
-  .compareit-image-after {
-    position: absolute;
-    background: image-url("1_2.jpg"); 
-    width: 100%;
-    height: 100%;
-    right: 0;
-  }
-}
-
-#compare2 {
   -webkit-user-select: none; 
   -moz-user-select:none;
   position: relative;
   img {position:absolute; top:0; display:block;}
-  .before {z-index:20;}
-  .after {z-index:10;}
-  .slider-bar {z-index:40; position:absolute; width: 20px; background: green;}
+
+  .compareit-before {z-index:20;}
+  .compareit-after {z-index:10;}
+  .compareit-slider-bar {z-index:40; position:absolute; width: 20px; background: green;}
 }

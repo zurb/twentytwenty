@@ -1,10 +1,16 @@
 (function($){
 
   $.fn.compareit = function(options) {
+    var sliderPct = 0.5;
     var container = this;
-    var beforeImg = this.find("img.before");
-    var slider = this.find(".slider-bar");
-    var sliderPct = 0.6; // initial pos
+    var beforeImg = container.find("img:first");
+    var afterImg = container.find("img:last");
+    container.append("<div class='compareit-slider-bar'></div>");
+    var slider = container.find(".compareit-slider-bar");
+    container.addClass("compareit-container");
+    beforeImg.addClass("compareit-before");
+    afterImg.addClass("compareit-after");
+
 
     var calcOffset = function(widthPct) {
       var w = beforeImg.width();
@@ -59,6 +65,6 @@
 
   };
 
-  $("#compare2").compareit();
+  // $(".compareit-container").compareit();
 
 })(jQuery);
