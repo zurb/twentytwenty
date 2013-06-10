@@ -2,3 +2,4 @@
 .sass-cache/*
 components/*
 css/*
+*.old
