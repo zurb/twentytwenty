@@ -75,9 +75,4 @@
     });
   };
 
-  $(window).load(function(){
-    $(".compareit-container").compareit();  
-  });
-  
-
 })(jQuery);
