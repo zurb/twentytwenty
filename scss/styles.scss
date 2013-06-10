@@ -3,12 +3,21 @@
 @import "foundation/components/grid";
 
 .compareit-container {
+  position: relative;
   -webkit-user-select: none; 
   -moz-user-select:none;
-  position: relative;
-  img {position:absolute; top:0; display:block;}
-
+  img {
+    position:absolute; 
+    top:0; 
+    display:block;
+  }
   .compareit-before {z-index:20;}
   .compareit-after {z-index:10;}
-  .compareit-slider-bar {z-index:40; position:absolute; width: 20px; background: green;}
+  .compareit-slider-bar {
+    z-index:40; 
+    position:absolute; 
+    width: 44px; 
+    margin-left: -22px;
+    background: inline-image("bar.png");
+  }
 }

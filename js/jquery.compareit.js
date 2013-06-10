@@ -40,8 +40,6 @@
         adjustSlider(sliderPct);
       });
 
-      $(window).trigger("resize.compareit");
-
       var offsetX = 0;
       var imgWidth = 0;
       
@@ -58,9 +56,13 @@
         container.removeClass("active");
       });
 
-      container.on("move", function(event) {
+      container.on("move", function(e) {
         if (container.hasClass("active")) {
-          sliderPct = (event.pageX-offsetX)/imgWidth;
+          sliderPct = (e.pageX-offsetX)/imgWidth;
+          if (sliderPct < 0 || sliderPct > 1) {
+            e.preventDefault();
+            return false;
+          }
           adjustSlider(sliderPct);
         }
       });
@@ -69,10 +71,13 @@
         event.preventDefault();
       });
 
+      $(window).trigger("resize.compareit");
     });
-
   };
 
-  $(".compareit-container").compareit();
+  $(window).load(function(){
+    $(".compareit-container").compareit();  
+  });
+  
 
 })(jQuery);
