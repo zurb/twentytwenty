@@ -4,11 +4,6 @@
 
 $useOverlay: false;
 
-#wrapper {
-  margin: 0 auto;
-  width: 800px;
-}
-
 .compareit-container {
   position: relative;
   width: 640px;
@@ -67,4 +62,14 @@ $useOverlay: false;
     height: 100%;
     right: 0;
   }
+}
+
+#compare2 {
+  -webkit-user-select: none; 
+  -moz-user-select:none;
+  position: relative;
+  img {position:absolute; top:0; display:block;}
+  .before {z-index:20;}
+  .after {z-index:10;}
+  .slider-bar {z-index:40; position:absolute; width: 20px; background: green;}
 }
