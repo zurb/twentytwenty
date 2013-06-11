@@ -2,12 +2,9 @@
 @import "foundation/components/global";
 @import "foundation/components/grid";
 
-.compareit-wrapper {
-  border: 1px solid #ccc;
-  margin: 10px 0;
-}
+$pluginPrefix: "twentytwenty";
 
-.compareit-container {
+.#{$pluginPrefix}-container {
   position: relative;
   -webkit-user-select: none; 
   -moz-user-select:none;
@@ -16,15 +13,15 @@
     top:0; 
     display:block;
   }
-  .compareit-before {z-index:20;}
-  .compareit-after {z-index:10;}
-  .compareit-slider-bar {
+  .#{$pluginPrefix}-before {z-index:20;}
+  .#{$pluginPrefix}-after {z-index:10;}
+  .#{$pluginPrefix}-slider-bar {
     z-index:40; 
     position:absolute; 
     width: 44px; 
     margin-left: -22px;
     background: inline-image("divider.png") top center no-repeat;
-    .compareit-handle {
+    .#{$pluginPrefix}-handle {
       background: inline-image("handle.png") no-repeat;
       width: 45px;
       height: 45px;

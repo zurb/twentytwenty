@@ -1,20 +1,20 @@
 (function($){
 
-  $.fn.compareit = function(options) {
+  $.fn.twentytwenty = function(options) {
     return this.each(function() {
 
       var sliderPct = 0.5;
       var container = $(this);
-      container.wrap("<div class='compareit-wrapper'></div>");
+      container.wrap("<div class='twentytwenty-wrapper'></div>");
       var beforeImg = container.find("img:first");
       var afterImg = container.find("img:last");
-      container.append("<div class='compareit-slider-bar'></div>");
-      var slider = container.find(".compareit-slider-bar");
-      slider.append("<div class='compareit-handle'></div>");
-      var handle = slider.find(".compareit-handle");
-      container.addClass("compareit-container");
-      beforeImg.addClass("compareit-before");
-      afterImg.addClass("compareit-after");
+      container.append("<div class='twentytwenty-slider-bar'></div>");
+      var slider = container.find(".twentytwenty-slider-bar");
+      slider.append("<div class='twentytwenty-handle'></div>");
+      var handle = slider.find(".twentytwenty-handle");
+      container.addClass("twentytwenty-container");
+      beforeImg.addClass("twentytwenty-before");
+      afterImg.addClass("twentytwenty-after");
 
 
       var calcOffset = function(widthPct) {
@@ -39,7 +39,7 @@
         adjustContainer(offset);
       }
 
-      $(window).on("resize.compareit", function(e) {
+      $(window).on("resize.twentytwenty", function(e) {
         adjustSlider(sliderPct);
       });
 
@@ -74,7 +74,7 @@
         event.preventDefault();
       });
 
-      $(window).trigger("resize.compareit");
+      $(window).trigger("resize.twentytwenty");
     });
   };
 
