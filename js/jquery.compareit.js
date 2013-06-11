@@ -5,10 +5,13 @@
 
       var sliderPct = 0.5;
       var container = $(this);
+      container.wrap("<div class='compareit-wrapper'></div>");
       var beforeImg = container.find("img:first");
       var afterImg = container.find("img:last");
       container.append("<div class='compareit-slider-bar'></div>");
       var slider = container.find(".compareit-slider-bar");
+      slider.append("<div class='compareit-handle'></div>");
+      var handle = slider.find(".compareit-handle");
       container.addClass("compareit-container");
       beforeImg.addClass("compareit-before");
       afterImg.addClass("compareit-after");

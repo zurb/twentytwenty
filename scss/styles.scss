@@ -2,6 +2,11 @@
 @import "foundation/components/global";
 @import "foundation/components/grid";
 
+.compareit-wrapper {
+  border: 1px solid #ccc;
+  margin: 10px 0;
+}
+
 .compareit-container {
   position: relative;
   -webkit-user-select: none; 
@@ -18,6 +23,14 @@
     position:absolute; 
     width: 44px; 
     margin-left: -22px;
-    background: inline-image("bar.png");
+    background: inline-image("divider.png") top center no-repeat;
+    .compareit-handle {
+      background: inline-image("handle.png") no-repeat;
+      width: 45px;
+      height: 45px;
+      position: absolute;
+      top: 40px;
+      left: -1px;
+    }
   }
 }
