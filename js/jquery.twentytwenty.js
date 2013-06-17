@@ -5,7 +5,9 @@
 
       var sliderPct = 0.5;
       var container = $(this);
+      
       container.wrap("<div class='twentytwenty-wrapper'></div>");
+      container.append("<div class='twentytwenty-overlay'></div>");
       var beforeImg = container.find("img:first");
       var afterImg = container.find("img:last");
       container.append("<div class='twentytwenty-slider-bar'></div>");
@@ -15,7 +17,10 @@
       container.addClass("twentytwenty-container");
       beforeImg.addClass("twentytwenty-before");
       afterImg.addClass("twentytwenty-after");
-
+      
+      var overlay = container.find(".twentytwenty-overlay");
+      overlay.append("<div class='twentytwenty-before-label'></div>");
+      overlay.append("<div class='twentytwenty-after-label'></div>");
 
       var calcOffset = function(widthPct) {
         var w = beforeImg.width();
