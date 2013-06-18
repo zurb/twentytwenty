@@ -9,8 +9,58 @@ bundle install
 bundle exec compass compile
 ```
 
+## How to use
+
+View the provided `index.html` in this project for a more comprehensive example of using this plugin.
+
+### Basic example
+
+Create a container that holds two images:
+
+```html
+<div id="container1">
+ <!-- The before image is first -->
+ <img src="http://placehold.it/400x200&text=1" />
+ <!-- The after image is last -->
+ <img src="http://placehold.it/400x200&text=2" />
+</div>
+```
+
+Now initialize the plugin on the window load:
+
+```
+$(window).load(function(){
+  $("#container1").twentytwenty();
+});
+```
+
+### Prevent FOUC
+
+If you want to avoid a [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) you can append the `twentytwenty-container` class to your container like so:
+
+```html
+<div id="container1" class="twentytwenty-container">
+ <!-- The before image is first -->
+ <img src="http://placehold.it/400x200&text=1" />
+ <!-- The after image is last -->
+ <img src="http://placehold.it/400x200&text=2" />
+</div>
+```
+
+### Multiple instances
+
+If you want to use multiple instances of this plugin on a single page you can target the container class:
+
+```js
+$(window).load(function(){
+  $(".twentytwenty-container").twentytwenty();
+});
+```
+
+
 ## Dependencies
 
+  * [jquery](http://jquery.com/)
   * [jquery.event.move](https://github.com/stephband/jquery.event.move)
 
 ## MIT Open Source License

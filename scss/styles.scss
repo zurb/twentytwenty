@@ -1,23 +1,93 @@
 @import "foundation/variables";
 @import "foundation/components/global";
 @import "foundation/components/grid";
+@import "compass/css3/transition";
 
-.compareit-container {
+$pluginPrefix: "twentytwenty";
+
+@mixin absolute-wh-position {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+} 
+
+.#{$pluginPrefix}-container {
   position: relative;
   -webkit-user-select: none; 
-  -moz-user-select:none;
+  -moz-user-select: none;
+
   img {
     position:absolute; 
     top:0; 
     display:block;
   }
-  .compareit-before {z-index:20;}
-  .compareit-after {z-index:10;}
-  .compareit-slider-bar {
+
+  &.active .#{$pluginPrefix}-overlay,
+  &.active :hover.#{$pluginPrefix}-overlay {
+    background: rgba(0,0,0,0);
+  }
+  &.active :hover.#{$pluginPrefix}-overlay .#{$pluginPrefix}-before-label,
+  &.active :hover.#{$pluginPrefix}-overlay .#{$pluginPrefix}-after-label {
+    opacity: 0;
+  }
+  .#{$pluginPrefix}-overlay {
+    @include absolute-wh-position;
+    @include transition-property(background);
+    @include transition-duration(0.5s);
+    background: rgba(1,1,1,0);
+    z-index: 25;
+
+    &:hover { background: rgba(1,1,1,0.5); }
+
+    .#{$pluginPrefix}-before-label {
+      @include absolute-wh-position;
+      @include transition-property(opacity);
+      @include transition-duration(0.5s);
+      left: 0;
+      margin: 0 10px;
+      background: inline-image("before.png") left no-repeat;
+      opacity: 0;
+    }
+    &:hover .#{$pluginPrefix}-before-label {
+      opacity: 1;
+    }
+
+    .#{$pluginPrefix}-after-label {
+      @include absolute-wh-position;
+      @include transition-property(opacity);
+      @include transition-duration(0.5s);
+      right: 0;
+      margin: 0 10px;
+      background: inline-image("after.png") right no-repeat;
+      opacity: 0;
+    }
+    &:hover .#{$pluginPrefix}-after-label {
+      opacity: 1;
+    }
+  }
+
+  .#{$pluginPrefix}-before {
+    z-index: 20;
+  }
+
+  .#{$pluginPrefix}-after {
+    z-index: 10;
+  }
+
+  .#{$pluginPrefix}-slider-bar {
     z-index:40; 
     position:absolute; 
     width: 44px; 
     margin-left: -22px;
-    background: inline-image("bar.png");
+    background: inline-image("divider.png") top center no-repeat;
+    .#{$pluginPrefix}-handle {
+      background: inline-image("handle.png") no-repeat;
+      width: 45px;
+      height: 45px;
+      position: absolute;
+      top: 40px;
+      left: -1px;
+    }
   }
 }
