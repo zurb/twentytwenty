@@ -1,123 +1,21 @@
 @import "foundation/variables";
 @import "foundation/components/global";
 @import "foundation/components/grid";
-@import "compass/css3/transition";
+@import "compass/css3";
 
 $pluginPrefix: "twentytwenty";
 
-
-
-.#{$pluginPrefix}-handle {z-index:40; height:46px; width:46px; position:absolute; left: 50%; margin-left: -23px; top:50%; margin-top: -23px; border-radius: 100px; border:3px solid white; box-shadow: 0px 0px 22px #333333;}
-.#{$pluginPrefix}-handle:before {
+@mixin handleContent {
   content: " ";
   display: block;
   width: 4px;
   background: white;
   height: 9999px;
   position: absolute;
-  margin-top: 42px;
   margin-left: 18px;
-  top: 0;
   z-index: 30;
-  box-shadow: 0px 0px 22px #333333;
+  @include box-shadow(0px 0px 22px #333333);
 }
-.#{$pluginPrefix}-handle:after {
-  content: " ";
-  display: block;
-  width: 4px;
-  background: white;
-  height: 9999px;
-  position: absolute;
-  margin-bottom: 42px;
-  margin-left: 18px;
-  bottom: 0;
-  z-index: 30;
-  box-shadow: 0px 0px 22px #333333;
-}
-
-.#{$pluginPrefix}-handle {
-  .#{$pluginPrefix}-left-arrow {
-    width: 0; 
-    height: 0; 
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent; 
-    border-right:10px solid white; 
-    position: absolute;
-    top: 10px;
-    left: 4px;
-  }
-
-  .#{$pluginPrefix}-right-arrow {
-    width: 0; 
-    height: 0; 
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-left: 10px solid white;
-    position: absolute;
-    top: 10px;
-    right: 4px;
-  }
-}
-
-
-/*
-.tt {
-  overflow: hidden;
-  position: relative;
-  .tt-handle {z-index:40; height:46px; width:46px; position:absolute; left: 50%; margin-left: -23px; top:50%; margin-top: -23px; border-radius: 100px; border:3px solid white; box-shadow: 0px 0px 22px #333333;}
-  .tt-handle:before {
-    content: " ";
-    display: block;
-    width: 4px;
-    background: white;
-    height: 9999px;
-    position: absolute;
-    margin-top: 42px;
-    margin-left: 18px;
-    top: 0;
-    z-index: 30;
-    box-shadow: 0px 0px 22px #333333;
-  }
-  .tt-handle:after {
-    content: " ";
-    display: block;
-    width: 4px;
-    background: white;
-    height: 9999px;
-    position: absolute;
-    margin-bottom: 42px;
-    margin-left: 18px;
-    bottom: 0;
-    z-index: 30;
-    box-shadow: 0px 0px 22px #333333;
-  }
-
-  .tt-handle {
-    .tt-left-arrow {
-      width: 0; 
-      height: 0; 
-      border-top: 10px solid transparent;
-      border-bottom: 10px solid transparent; 
-      border-right:10px solid white; 
-      position: absolute;
-      top: 10px;
-      left: 4px;
-    }
-
-    .tt-right-arrow {
-      width: 0; 
-      height: 0; 
-      border-top: 10px solid transparent;
-      border-bottom: 10px solid transparent;
-      border-left: 10px solid white;
-      position: absolute;
-      top: 10px;
-      right: 4px;
-    }
-  }
-}
-*/
-
 
 @mixin absolute-wh-position {
   position: absolute;
@@ -141,11 +39,12 @@ $pluginPrefix: "twentytwenty";
   &.active .#{$pluginPrefix}-overlay,
   &.active :hover.#{$pluginPrefix}-overlay {
     background: rgba(0,0,0,0);
+    .#{$pluginPrefix}-before-label,
+    .#{$pluginPrefix}-after-label {
+      opacity: 0;
+    }
   }
-  &.active :hover.#{$pluginPrefix}-overlay .#{$pluginPrefix}-before-label,
-  &.active :hover.#{$pluginPrefix}-overlay .#{$pluginPrefix}-after-label {
-    opacity: 0;
-  }
+
   .#{$pluginPrefix}-overlay {
     @include absolute-wh-position;
     @include transition-property(background);
@@ -189,4 +88,55 @@ $pluginPrefix: "twentytwenty";
   .#{$pluginPrefix}-after {
     z-index: 10;
   }
+
+
+  .#{$pluginPrefix}-handle {
+    z-index: 40;
+    height: 46px;
+    width: 46px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -23px;
+    margin-top: -23px;
+    border:3px solid white; 
+    @include border-radius(100px);
+    @include box-shadow(0px 0px 22px #333333);
+
+    &:before {
+      @include handleContent();
+      margin-top: 42px;
+      top: 0;
+    }
+
+    &:after {
+      @include handleContent();
+      margin-bottom: 42px;
+      bottom: 0;
+    }
+
+    .#{$pluginPrefix}-left-arrow {
+      width: 0; 
+      height: 0; 
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent; 
+      border-right:10px solid white; 
+      position: absolute;
+      top: 10px;
+      left: 4px;
+    }
+
+    .#{$pluginPrefix}-right-arrow {
+      width: 0; 
+      height: 0; 
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 10px solid white;
+      position: absolute;
+      top: 10px;
+      right: 4px;
+    }
+  }
+
+
 }
