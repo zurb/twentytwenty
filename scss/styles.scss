@@ -5,6 +5,120 @@
 
 $pluginPrefix: "twentytwenty";
 
+
+
+.#{$pluginPrefix}-handle {z-index:40; height:46px; width:46px; position:absolute; left: 50%; margin-left: -23px; top:50%; margin-top: -23px; border-radius: 100px; border:3px solid white; box-shadow: 0px 0px 22px #333333;}
+.#{$pluginPrefix}-handle:before {
+  content: " ";
+  display: block;
+  width: 4px;
+  background: white;
+  height: 9999px;
+  position: absolute;
+  margin-top: 42px;
+  margin-left: 18px;
+  top: 0;
+  z-index: 30;
+  box-shadow: 0px 0px 22px #333333;
+}
+.#{$pluginPrefix}-handle:after {
+  content: " ";
+  display: block;
+  width: 4px;
+  background: white;
+  height: 9999px;
+  position: absolute;
+  margin-bottom: 42px;
+  margin-left: 18px;
+  bottom: 0;
+  z-index: 30;
+  box-shadow: 0px 0px 22px #333333;
+}
+
+.#{$pluginPrefix}-handle {
+  .#{$pluginPrefix}-left-arrow {
+    width: 0; 
+    height: 0; 
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent; 
+    border-right:10px solid white; 
+    position: absolute;
+    top: 10px;
+    left: 4px;
+  }
+
+  .#{$pluginPrefix}-right-arrow {
+    width: 0; 
+    height: 0; 
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid white;
+    position: absolute;
+    top: 10px;
+    right: 4px;
+  }
+}
+
+
+/*
+.tt {
+  overflow: hidden;
+  position: relative;
+  .tt-handle {z-index:40; height:46px; width:46px; position:absolute; left: 50%; margin-left: -23px; top:50%; margin-top: -23px; border-radius: 100px; border:3px solid white; box-shadow: 0px 0px 22px #333333;}
+  .tt-handle:before {
+    content: " ";
+    display: block;
+    width: 4px;
+    background: white;
+    height: 9999px;
+    position: absolute;
+    margin-top: 42px;
+    margin-left: 18px;
+    top: 0;
+    z-index: 30;
+    box-shadow: 0px 0px 22px #333333;
+  }
+  .tt-handle:after {
+    content: " ";
+    display: block;
+    width: 4px;
+    background: white;
+    height: 9999px;
+    position: absolute;
+    margin-bottom: 42px;
+    margin-left: 18px;
+    bottom: 0;
+    z-index: 30;
+    box-shadow: 0px 0px 22px #333333;
+  }
+
+  .tt-handle {
+    .tt-left-arrow {
+      width: 0; 
+      height: 0; 
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent; 
+      border-right:10px solid white; 
+      position: absolute;
+      top: 10px;
+      left: 4px;
+    }
+
+    .tt-right-arrow {
+      width: 0; 
+      height: 0; 
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 10px solid white;
+      position: absolute;
+      top: 10px;
+      right: 4px;
+    }
+  }
+}
+*/
+
+
 @mixin absolute-wh-position {
   position: absolute;
   top: 0;
@@ -13,6 +127,7 @@ $pluginPrefix: "twentytwenty";
 } 
 
 .#{$pluginPrefix}-container {
+  overflow: hidden;
   position: relative;
   -webkit-user-select: none; 
   -moz-user-select: none;
@@ -73,21 +188,5 @@ $pluginPrefix: "twentytwenty";
 
   .#{$pluginPrefix}-after {
     z-index: 10;
-  }
-
-  .#{$pluginPrefix}-slider-bar {
-    z-index:40; 
-    position:absolute; 
-    width: 44px; 
-    margin-left: -22px;
-    background: inline-image("divider.png") top center no-repeat;
-    .#{$pluginPrefix}-handle {
-      background: inline-image("handle.png") no-repeat;
-      width: 45px;
-      height: 45px;
-      position: absolute;
-      top: 40px;
-      left: -1px;
-    }
   }
 }

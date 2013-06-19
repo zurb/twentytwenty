@@ -10,10 +10,10 @@
       container.append("<div class='twentytwenty-overlay'></div>");
       var beforeImg = container.find("img:first");
       var afterImg = container.find("img:last");
-      container.append("<div class='twentytwenty-slider-bar'></div>");
-      var slider = container.find(".twentytwenty-slider-bar");
-      slider.append("<div class='twentytwenty-handle'></div>");
-      var handle = slider.find(".twentytwenty-handle");
+      container.append("<div class='twentytwenty-handle'></div>");
+      var slider = container.find(".twentytwenty-handle");
+      slider.append("<span class='twentytwenty-left-arrow'></span>");
+      slider.append("<span class='twentytwenty-right-arrow'></span>");
       container.addClass("twentytwenty-container");
       beforeImg.addClass("twentytwenty-before");
       afterImg.addClass("twentytwenty-after");
@@ -39,7 +39,7 @@
 
       var adjustSlider = function(pct) {
         var offset = calcOffset(pct);
-        slider.css("height", offset.h);
+        //slider.css("height", offset.h);
         slider.css("left", offset.cw);
         adjustContainer(offset);
       }
