@@ -57,6 +57,12 @@ $(window).load(function(){
 });
 ```
 
+## TODO
+
+- Visual style pass
+- Loading spinner for container
+- Sass code cleanup
+- QA across more mobile devices (Windows, Android phones)
 
 ## Dependencies
 
