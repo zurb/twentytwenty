@@ -1,9 +1,10 @@
 (function($){
 
   $.fn.twentytwenty = function(options) {
+    var options = $.extend({default_offset_pct: 0.5}, options);
     return this.each(function() {
 
-      var sliderPct = 0.5;
+      var sliderPct = options.default_offset_pct;
       var container = $(this);
       
       container.wrap("<div class='twentytwenty-wrapper'></div>");
