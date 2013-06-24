@@ -34,6 +34,14 @@ $(window).load(function(){
 });
 ```
 
+### Options
+
+```js
+$(window).load(function(){
+  $(".twentytwenty-container").twentytwenty({default_offset_pct: 0.7});
+});
+```
+
 ### Prevent FOUC
 
 If you want to avoid a [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) you can append the `twentytwenty-container` class to your container like so:
