@@ -1,139 +1,195 @@
+// Compass overrides to remove old vendor prefixes
+$experimental-support-for-opera:false;
+$experimental-support-for-khtml:false;
+$experimental-support-for-microsoft:false;
+// Import Compass CSS3 mixins
 @import "compass/css3";
 
-$pluginPrefix: "twentytwenty";
+// 20/20 Class Prefix
+$pluginPrefix: "twentytwenty" !default;
 
-@mixin handleContent {
+// 20/20 Handle Styles
+$twenty20-handle-color: #fff !default;
+$twenty20-handle-stroke: 6px !default;
+$twenty20-handle-circle-width: 38px !default;
+$twenty20-handle-box-shadow: 0px 0px 12px rgba(#333,0.5) !default;
+$twenty20-handle-triangle-color: $twenty20-handle-color !default;
+$twenty20-handle-triangle-size: 6px !default;
+$twenty20-handle-triangle-position: 5px !default;
+$twenty20-handle-radius: 1000px !default;
+
+// 20/20 Overlay Styles
+$twenty20-overlay-bg: rgba(#000,0.5) !default;
+$twenty20-overlay-label-color: #fff !default;
+$twenty20-overlay-label-bg: rgba(#fff, .2) !default;
+$twenty20-overlay-label-height: 38px !default;
+$twenty20-overlay-label-padding: 20px !default;
+$twenty20-overlay-label-font-size: 13px !default;
+$twenty20-overlay-label-letter-spacing: 0.1em !default;
+$twenty20-label-radius: 2px !default;
+
+// 20/20 Placeholders
+%handle-content {
   content: " ";
   display: block;
-  width: 4px;
-  background: white;
+  width: $twenty20-handle-stroke;
+  background: $twenty20-handle-color;
   height: 9999px;
   position: absolute;
-  margin-left: 18px;
+  left: 50%;
+  margin-left: -($twenty20-handle-stroke / 2);
   z-index: 30;
-  @include box-shadow(0px 0px 22px #333333);
+  @include box-shadow($twenty20-handle-box-shadow);
 }
 
-@mixin absolute-wh-position {
+%absolute-wh-position {
   position: absolute;
   top: 0;
   width: 100%;
   height: 100%;
-} 
+}
 
+%overlay-transition-duration { @include transition-duration(0.5s); }
+
+%label-transition-property { @include transition-property(opacity); }
+
+%label-text {
+  color: $twenty20-overlay-label-color;
+  font-size: $twenty20-overlay-label-font-size;
+  letter-spacing: $twenty20-overlay-label-letter-spacing;
+}
+
+%label-structure {
+  background: $twenty20-overlay-label-bg;
+  position: absolute;
+  top: 50%;
+  margin-top: -($twenty20-overlay-label-height / 2);
+  line-height: $twenty20-overlay-label-height;
+  padding: 0 $twenty20-overlay-label-padding;
+  @include border-radius($twenty20-label-radius);
+}
+
+%css-triangle {
+  width: 0;
+  height: 0;
+  border: $twenty20-handle-triangle-size inset transparent;
+  position: absolute;
+  top: 50%;
+  margin-top: -$twenty20-handle-triangle-size;
+}
+
+// 20/20 Container
 .#{$pluginPrefix}-container {
+  @include box-sizing(content-box);
   overflow: hidden;
   position: relative;
-  -webkit-user-select: none; 
+  -webkit-user-select: none;
   -moz-user-select: none;
 
   img {
-    position:absolute; 
-    top:0; 
-    display:block;
+    position: absolute;
+    top: 0;
+    display: block;
   }
 
   &.active .#{$pluginPrefix}-overlay,
-  &.active :hover.#{$pluginPrefix}-overlay {
-    background: rgba(0,0,0,0);
+  &.active :hover.#{$pluginPrefix}-overlay { background: rgba(#000,0);
+
     .#{$pluginPrefix}-before-label,
-    .#{$pluginPrefix}-after-label {
-      opacity: 0;
-    }
+    .#{$pluginPrefix}-after-label { opacity: 0; }
+  }
+  * { @include box-sizing(content-box); }
+}
+
+// 20/20 Before Label
+.#{$pluginPrefix}-before-label {
+  @extend %absolute-wh-position;
+  @extend %label-transition-property;
+  @extend %overlay-transition-duration;
+  opacity: 0;
+
+  &:before {
+    @extend %label-structure;
+    @extend %label-text;
+    content: "Before";
+    left: 10px;
+  }
+}
+
+// 20/20 After Label
+.#{$pluginPrefix}-after-label {
+  @extend %absolute-wh-position;
+  @extend %label-transition-property;
+  @extend %overlay-transition-duration;
+  opacity: 0;
+
+  &:before {
+    @extend %label-structure;
+    @extend %label-text;
+    content: "After";
+    right: 10px;
+  }
+}
+
+// 20/20 Overlay
+.#{$pluginPrefix}-overlay {
+  @extend %absolute-wh-position;
+  @extend %overlay-transition-duration;
+  @include transition-property(background);
+  background: rgba(#000,0);
+  z-index: 25;
+
+  &:hover { background: $twenty20-overlay-bg;
+
+    .#{$pluginPrefix}-after-label { opacity: 1; }
+    .#{$pluginPrefix}-before-label { opacity: 1; }
+  }
+}
+
+.#{$pluginPrefix}-before { z-index: 20; }
+.#{$pluginPrefix}-after { z-index: 10; }
+
+// 20/20 Handle Styles
+.#{$pluginPrefix}-handle {
+  height: $twenty20-handle-circle-width;
+  width: $twenty20-handle-circle-width;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -($twenty20-handle-circle-width/2) - $twenty20-handle-stroke;
+  margin-top: -($twenty20-handle-circle-width/2) - $twenty20-handle-stroke;
+  border: $twenty20-handle-stroke solid $twenty20-handle-color;
+  @include border-radius($twenty20-handle-radius);
+  @include box-shadow($twenty20-handle-box-shadow);
+  z-index: 40;
+
+  &:before {
+    @extend %handle-content;
+    bottom: 50%;
+    margin-bottom: ($twenty20-handle-circle-width/2) + $twenty20-handle-stroke;
+    @include box-shadow(0 $twenty20-handle-stroke 0 $twenty20-handle-color, $twenty20-handle-box-shadow);
   }
 
-  .#{$pluginPrefix}-overlay {
-    @include absolute-wh-position;
-    @include transition-property(background);
-    @include transition-duration(0.5s);
-    background: rgba(1,1,1,0);
-    z-index: 25;
-
-    &:hover { background: rgba(1,1,1,0.5); }
-
-    .#{$pluginPrefix}-before-label {
-      @include absolute-wh-position;
-      @include transition-property(opacity);
-      @include transition-duration(0.5s);
-      left: 0;
-      margin: 0 10px;
-      background: inline-image("before.png") left no-repeat;
-      opacity: 0;
-    }
-    &:hover .#{$pluginPrefix}-before-label {
-      opacity: 1;
-    }
-
-    .#{$pluginPrefix}-after-label {
-      @include absolute-wh-position;
-      @include transition-property(opacity);
-      @include transition-duration(0.5s);
-      right: 0;
-      margin: 0 10px;
-      background: inline-image("after.png") right no-repeat;
-      opacity: 0;
-    }
-    &:hover .#{$pluginPrefix}-after-label {
-      opacity: 1;
-    }
-  }
-
-  .#{$pluginPrefix}-before {
-    z-index: 20;
-  }
-
-  .#{$pluginPrefix}-after {
-    z-index: 10;
-  }
-
-
-  .#{$pluginPrefix}-handle {
-    z-index: 40;
-    height: 46px;
-    width: 46px;
-    position: absolute;
-    left: 50%;
+  &:after {
+    @extend %handle-content;
     top: 50%;
-    margin-left: -23px;
-    margin-top: -23px;
-    border:3px solid white; 
-    @include border-radius(100px);
-    @include box-shadow(0px 0px 22px #333333);
-
-    &:before {
-      @include handleContent();
-      margin-top: 42px;
-      top: 0;
-    }
-
-    &:after {
-      @include handleContent();
-      margin-bottom: 42px;
-      bottom: 0;
-    }
-
-    .#{$pluginPrefix}-left-arrow {
-      width: 0; 
-      height: 0; 
-      border-top: 8px solid transparent;
-      border-bottom: 8px solid transparent; 
-      border-right:8px solid white; 
-      position: absolute;
-      top: 11px;
-      left: 5px;
-    }
-
-    .#{$pluginPrefix}-right-arrow {
-      width: 0; 
-      height: 0; 
-      border-top: 8px solid transparent;
-      border-bottom: 8px solid transparent;
-      border-left: 8px solid white;
-      position: absolute;
-      top: 11px;
-      right: 5px;
-    }
+    margin-top: ($twenty20-handle-circle-width/2) + $twenty20-handle-stroke;
+    @include box-shadow(0 (-$twenty20-handle-stroke) 0 $twenty20-handle-color, $twenty20-handle-box-shadow);
   }
+}
 
+// 20/20 Left Handle
+.#{$pluginPrefix}-left-arrow {
+  border-right: $twenty20-handle-triangle-size solid $twenty20-handle-triangle-color;
+  left: 50%;
+  margin-left: -($twenty20-handle-triangle-size * 2) - $twenty20-handle-triangle-position;
+  @extend %css-triangle;
+}
 
+// 20/20 Right Handle
+.#{$pluginPrefix}-right-arrow {
+  border-left: $twenty20-handle-triangle-size solid $twenty20-handle-triangle-color;
+  right: 50%;
+  margin-right: -($twenty20-handle-triangle-size * 2) - $twenty20-handle-triangle-position;
+  @extend %css-triangle;
 }
