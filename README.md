@@ -1,19 +1,4 @@
-# Quickstart
-
-Run the following commands to get up and running quickly:
-
-```bash
-git clone git@github.com:zurb/compareit.git ~/Sites/compareit
-cd compareit
-bundle install
-bundle exec compass compile
-```
-
-## How to use
-
-View the provided `index.html` in this project for a more comprehensive example of using this plugin.
-
-### Basic example
+## Basic usage
 
 Create a container that holds two images:
 
@@ -35,6 +20,7 @@ $(window).load(function(){
 ```
 
 ### Options
+
 
 ```js
 $(window).load(function(){
@@ -65,12 +51,27 @@ $(window).load(function(){
 });
 ```
 
-## TODO
+# Compass Quickstart
 
-- Visual style pass
-- Loading spinner for container
-- Sass code cleanup
-- QA across more mobile devices (Windows, Android phones)
+Run the following commands to get up and running quickly:
+
+```bash
+git clone git@github.com:zurb/compareit.git ~/Sites/compareit
+cd compareit
+bundle install
+bundle exec compass compile
+```
+
+All default [Sass](http://sass-lang.com/) variables can be found in `scss/twentytwenty.scss`.
+
+## Support
+
+- IE8+
+- Firefox (latest)
+- Chrome
+- Safari
+- Android 
+- iOS (iPhone, iPad)
 
 ## Dependencies
 
