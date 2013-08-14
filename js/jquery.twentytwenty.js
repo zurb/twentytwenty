@@ -68,9 +68,11 @@
       container.on("move", function(e) {
         if (container.hasClass("active")) {
           sliderPct = (e.pageX-offsetX)/imgWidth;
-          if (sliderPct < 0 || sliderPct > 1) {
-            e.preventDefault();
-            return false;
+          if (sliderPct < 0) {
+            sliderPct = 0;
+          }
+          if (sliderPct > 1) {
+            sliderPct = 1;
           }
           adjustSlider(sliderPct);
         }
