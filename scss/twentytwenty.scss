@@ -162,6 +162,7 @@ $twenty20-label-radius: 2px !default;
   @include border-radius($twenty20-handle-radius);
   @include box-shadow($twenty20-handle-box-shadow);
   z-index: 40;
+  cursor: pointer;
 
   &:before {
     @extend %handle-content;
