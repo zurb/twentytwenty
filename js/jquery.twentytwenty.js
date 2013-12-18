@@ -1,7 +1,7 @@
 (function($){
 
   $.fn.twentytwenty = function(options) {
-    var options = $.extend({default_offset_pct: 0.5}, options);
+    var options = $.extend({default_offset_pct: 0.5, move_slider_on_hover: false}, options);
     return this.each(function() {
 
       var sliderPct = options.default_offset_pct;
@@ -51,8 +51,20 @@
 
       var offsetX = 0;
       var imgWidth = 0;
+
+      var events = {
+        start: "movestart",
+        move: "move",
+        end: "mouseend"
+      };
+      if (options.move_slider_on_hover === true) {
+        events.start += " mouseenter";
+        events.move += " mousemove";
+        events.end += " mouseleave";
+      }
+
       
-      container.on("movestart", function(e) {
+      container.on(events.start, function(e) {
         if ((e.distX > e.distY && e.distX < -e.distY) || (e.distX < e.distY && e.distX > -e.distY)) {
           e.preventDefault();
         }
@@ -61,11 +73,11 @@
         imgWidth = beforeImg.width();          
       });
 
-      container.on("moveend", function(e) {
+      container.on(events.end, function(e) {
         container.removeClass("active");
       });
 
-      container.on("move", function(e) {
+      container.on(events.move, function(e) {
         if (container.hasClass("active")) {
           sliderPct = (e.pageX-offsetX)/imgWidth;
           if (sliderPct < 0) {
