@@ -24,7 +24,10 @@ $(window).load(function(){
 
 ```js
 $(window).load(function(){
-  $(".twentytwenty-container").twentytwenty({default_offset_pct: 0.7});
+  $(".twentytwenty-container").twentytwenty({
+    default_offset_pct: 0.7, // How far to the left the slider should be
+    move_slider_on_hover: true // Move slider on mouse hover?
+  });
 });
 ```
 
