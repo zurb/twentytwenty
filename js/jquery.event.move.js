@@ -1,6 +1,6 @@
 // jquery.event.move
 //
-// 1.3.1
+// 1.3.6
 //
 // Stephen Band
 //
@@ -87,8 +87,8 @@
 	
 	function Timer(fn){
 		var callback = fn,
-				active = false,
-				running = false;
+		    active = false,
+		    running = false;
 		
 		function trigger(time) {
 			if (active){
@@ -341,10 +341,11 @@
 	// Handlers that control what happens following a movestart
 
 	function activeMousemove(e) {
-		var event = e.data.event,
-		    timer = e.data.timer;
+		var timer = e.data.timer;
 
-		updateEvent(event, e, e.timeStamp, timer);
+		e.data.touch = e;
+		e.data.timeStamp = e.timeStamp;
+		timer.kick();
 	}
 
 	function activeMouseend(e) {
@@ -378,7 +379,9 @@
 		e.preventDefault();
 
 		event.targetTouches = e.targetTouches;
-		updateEvent(event, touch, e.timeStamp, timer);
+		e.data.touch = touch;
+		e.data.timeStamp = e.timeStamp;
+		timer.kick();
 	}
 
 	function activeTouchend(e) {
@@ -416,8 +419,6 @@
 		event.velocityY = 0.3 * event.velocityY + 0.7 * event.deltaY / time;
 		event.pageX =  touch.pageX;
 		event.pageY =  touch.pageY;
-
-		timer.kick();
 	}
 
 	function endEvent(event, timer, fn) {
@@ -486,13 +487,18 @@
 		remove: removeMethod,
 
 		_default: function(e) {
-			var template, data;
+			var event, data;
 			
 			// If no move events were bound to any ancestors of this
 			// target, high tail it out of here.
 			if (!e._handled()) { return; }
 
-			template = {
+			function update(time) {
+				updateEvent(event, data.touch, data.timeStamp);
+				trigger(e.target, event);
+			}
+
+			event = {
 				target: e.target,
 				startX: e.startX,
 				startY: e.startY,
@@ -511,10 +517,10 @@
 			};
 
 			data = {
-				event: template,
-				timer: new Timer(function(time){
-					trigger(e.target, template);
-				})
+				event: event,
+				timer: new Timer(update),
+				touch: undefined,
+				timeStamp: undefined
 			};
 			
 			if (e.identifier === undefined) {
