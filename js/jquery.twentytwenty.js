@@ -78,7 +78,7 @@
         }
       });
 
-      container.find("img").on("mousedown", function(e) {
+      container.find("img").on("mousedown", function(event) {
         event.preventDefault();
       });
 
