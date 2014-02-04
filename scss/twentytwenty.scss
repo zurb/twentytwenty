@@ -23,6 +23,7 @@ $twenty20-overlay-bg: rgba(#000,0.5) !default;
 $twenty20-overlay-label-color: #fff !default;
 $twenty20-overlay-label-bg: rgba(#fff, .2) !default;
 $twenty20-overlay-label-height: 38px !default;
+$twenty20-overlay-label-width: 80px !default;
 $twenty20-overlay-label-padding: 20px !default;
 $twenty20-overlay-label-font-size: 13px !default;
 $twenty20-overlay-label-letter-spacing: 0.1em !default;
@@ -32,14 +33,24 @@ $twenty20-label-radius: 2px !default;
 %handle-content {
   content: " ";
   display: block;
-  width: $twenty20-handle-stroke;
   background: $twenty20-handle-color;
-  height: 9999px;
   position: absolute;
-  left: 50%;
-  margin-left: -($twenty20-handle-stroke / 2);
   z-index: 30;
   @include box-shadow($twenty20-handle-box-shadow);
+}
+
+%handle-position-horizontal {
+  width: $twenty20-handle-stroke;
+  height: 9999px;
+  left: 50%;
+  margin-left: -($twenty20-handle-stroke / 2);
+}
+
+%handle-position-vertical {
+  width: 9999px;
+  height: $twenty20-handle-stroke;
+  top: 50%;
+  margin-top: -($twenty20-handle-stroke / 2);
 }
 
 %absolute-wh-position {
@@ -60,13 +71,23 @@ $twenty20-label-radius: 2px !default;
 }
 
 %label-structure {
-  background: $twenty20-overlay-label-bg;
   position: absolute;
-  top: 50%;
-  margin-top: -($twenty20-overlay-label-height / 2);
+  background: $twenty20-overlay-label-bg;
   line-height: $twenty20-overlay-label-height;
   padding: 0 $twenty20-overlay-label-padding;
   @include border-radius($twenty20-label-radius);
+}
+
+%label-position-horizontal {
+  top: 50%;
+  margin-top: -($twenty20-overlay-label-height / 2);
+}
+
+%label-position-vertical {
+  left: 50%;
+  margin-left: -($twenty20-overlay-label-width / 2);
+  text-align: center;
+  width: $twenty20-overlay-label-width;
 }
 
 %css-triangle {
@@ -74,8 +95,18 @@ $twenty20-label-radius: 2px !default;
   height: 0;
   border: $twenty20-handle-triangle-size inset transparent;
   position: absolute;
+}
+
+%css-triangle-horizontal {
+  @extend %css-triangle;
   top: 50%;
   margin-top: -$twenty20-handle-triangle-size;
+}
+
+%css-triangle-vertical {
+  @extend %css-triangle;
+  left: 50%;
+  margin-left: -$twenty20-handle-triangle-size;
 }
 
 // 20/20 Container
@@ -112,7 +143,6 @@ $twenty20-label-radius: 2px !default;
     @extend %label-structure;
     @extend %label-text;
     content: "Before";
-    left: 10px;
   }
 }
 
@@ -127,7 +157,40 @@ $twenty20-label-radius: 2px !default;
     @extend %label-structure;
     @extend %label-text;
     content: "After";
-    right: 10px;
+  }
+}
+
+// 20/20 Horizontal Labels
+.#{$pluginPrefix}-horizontal .#{$pluginPrefix}-before-label {
+
+  &:before {
+     @extend %label-position-horizontal;
+     left: 10px;
+  }
+}
+
+.#{$pluginPrefix}-horizontal .#{$pluginPrefix}-after-label {
+
+  &:before {
+     @extend %label-position-horizontal;
+     right: 10px;
+  }
+}
+
+// 20/20 Vertical Labels
+.#{$pluginPrefix}-vertical .#{$pluginPrefix}-before-label {
+  
+  &:before {
+     @extend %label-position-vertical;
+     top: 10px;
+  }
+}
+
+.#{$pluginPrefix}-vertical .#{$pluginPrefix}-after-label {
+
+  &:before {
+     @extend %label-position-vertical;
+     bottom: 10px;
   }
 }
 
@@ -163,9 +226,14 @@ $twenty20-label-radius: 2px !default;
   @include box-shadow($twenty20-handle-box-shadow);
   z-index: 40;
   cursor: pointer;
+}
+
+// 20/20 Horizontal Handle Styles
+.#{$pluginPrefix}-horizontal .#{$pluginPrefix}-handle {
 
   &:before {
     @extend %handle-content;
+    @extend %handle-position-horizontal;
     bottom: 50%;
     margin-bottom: ($twenty20-handle-circle-width/2) + $twenty20-handle-stroke;
     @include box-shadow(0 $twenty20-handle-stroke 0 $twenty20-handle-color, $twenty20-handle-box-shadow);
@@ -173,9 +241,30 @@ $twenty20-label-radius: 2px !default;
 
   &:after {
     @extend %handle-content;
+    @extend %handle-position-horizontal;
     top: 50%;
     margin-top: ($twenty20-handle-circle-width/2) + $twenty20-handle-stroke;
     @include box-shadow(0 (-$twenty20-handle-stroke) 0 $twenty20-handle-color, $twenty20-handle-box-shadow);
+  }
+}
+
+// 20/20 Vertical Handle Styles
+.#{$pluginPrefix}-vertical .#{$pluginPrefix}-handle {
+
+  &:before {
+    @extend %handle-content;
+    @extend %handle-position-vertical;
+    left: 50%;
+    margin-left: ($twenty20-handle-circle-width/2) + $twenty20-handle-stroke;
+    @include box-shadow($twenty20-handle-stroke 0 0 $twenty20-handle-color, $twenty20-handle-box-shadow);
+  }
+
+  &:after {
+    @extend %handle-content;
+    @extend %handle-position-vertical;
+    right: 50%;
+    margin-right: ($twenty20-handle-circle-width/2) + $twenty20-handle-stroke;
+    @include box-shadow((-$twenty20-handle-stroke) 0 0 $twenty20-handle-color, $twenty20-handle-box-shadow);
   }
 }
 
@@ -184,7 +273,7 @@ $twenty20-label-radius: 2px !default;
   border-right: $twenty20-handle-triangle-size solid $twenty20-handle-triangle-color;
   left: 50%;
   margin-left: -($twenty20-handle-triangle-size * 2) - $twenty20-handle-triangle-position;
-  @extend %css-triangle;
+  @extend %css-triangle-horizontal;
 }
 
 // 20/20 Right Handle
@@ -192,5 +281,21 @@ $twenty20-label-radius: 2px !default;
   border-left: $twenty20-handle-triangle-size solid $twenty20-handle-triangle-color;
   right: 50%;
   margin-right: -($twenty20-handle-triangle-size * 2) - $twenty20-handle-triangle-position;
-  @extend %css-triangle;
+  @extend %css-triangle-horizontal;
+}
+
+// 20/20 Up Handle
+.#{$pluginPrefix}-up-arrow {
+  border-bottom: $twenty20-handle-triangle-size solid $twenty20-handle-triangle-color;
+  top: 50%;
+  margin-top: -($twenty20-handle-triangle-size * 2) - $twenty20-handle-triangle-position;
+  @extend %css-triangle-vertical;
+}
+
+// 20/20 Down Handle
+.#{$pluginPrefix}-down-arrow {
+  border-top: $twenty20-handle-triangle-size solid $twenty20-handle-triangle-color;
+  bottom: 50%;
+  margin-bottom: -($twenty20-handle-triangle-size * 2) - $twenty20-handle-triangle-position;
+  @extend %css-triangle-vertical;
 }
