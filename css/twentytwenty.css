@@ -56,9 +56,9 @@
 
 .twentytwenty-vertical .twentytwenty-before-label:before, .twentytwenty-vertical .twentytwenty-after-label:before {
   left: 50%;
-  margin-left: -40px;
+  margin-left: -45px;
   text-align: center;
-  width: 80px; }
+  width: 90px; }
 
 .twentytwenty-left-arrow, .twentytwenty-right-arrow, .twentytwenty-up-arrow, .twentytwenty-down-arrow {
   width: 0;
