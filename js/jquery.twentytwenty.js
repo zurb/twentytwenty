@@ -61,7 +61,7 @@
       var offsetX = 0;
       var imgWidth = 0;
       
-      container.on("movestart", function(e) {
+      slider.on("movestart", function(e) {
         if (((e.distX > e.distY && e.distX < -e.distY) || (e.distX < e.distY && e.distX > -e.distY)) && sliderOrientation !== 'vertical') {
           e.preventDefault();
         }
@@ -75,11 +75,11 @@
         imgHeight = beforeImg.height();          
       });
 
-      container.on("moveend", function(e) {
+      slider.on("moveend", function(e) {
         container.removeClass("active");
       });
 
-      container.on("move", function(e) {
+      slider.on("move", function(e) {
         if (container.hasClass("active")) {
           sliderPct = (sliderOrientation === 'vertical') ? (e.pageY-offsetY)/imgHeight : (e.pageX-offsetX)/imgWidth;
           if (sliderPct < 0) {
