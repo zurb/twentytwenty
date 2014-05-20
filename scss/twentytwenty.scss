@@ -112,6 +112,7 @@ $twenty20-label-radius: 2px !default;
 // 20/20 Container
 .#{$pluginPrefix}-container {
   @include box-sizing(content-box);
+  z-index: 0;
   overflow: hidden;
   position: relative;
   -webkit-user-select: none;
