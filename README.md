@@ -1,6 +1,17 @@
 ## Basic usage
 
-Create a container that holds two images:
+Include the javascript and css files.
+
+```html
+<script src="js/jquery-2.1.0.min.js" type="text/javascript"></script>
+<script src="js/jquery.event.move.js" type="text/javascript"></script>
+<script src="js/jquery.twentytwenty.js" type="text/javascript"></script>
+<link rel="stylesheet" href="css/twentytwenty.css" type="text/css" media="screen" />
+``` 
+You might need to change the paths to match your setup.
+
+
+After including the files you are ready to create a container that holds two images:
 
 ```html
 <div id="container1">
