@@ -8,7 +8,7 @@ Include the javascript and css files.
 <script src="js/jquery.twentytwenty.js" type="text/javascript"></script>
 <link rel="stylesheet" href="css/twentytwenty.css" type="text/css" media="screen" />
 ``` 
-You might need to change the pathes to match your setup.
+You might need to change the paths to match your setup.
 
 
 After including the files you are ready to create a container that holds two images:
