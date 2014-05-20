@@ -118,6 +118,7 @@ $twenty20-label-radius: 2px !default;
   -moz-user-select: none;
 
   img {
+    max-width: 100%;
     position: absolute;
     top: 0;
     display: block;
@@ -179,7 +180,7 @@ $twenty20-label-radius: 2px !default;
 
 // 20/20 Vertical Labels
 .#{$pluginPrefix}-vertical .#{$pluginPrefix}-before-label {
-  
+
   &:before {
      @extend %label-position-vertical;
      top: 10px;
