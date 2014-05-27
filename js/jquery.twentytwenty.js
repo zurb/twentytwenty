@@ -52,7 +52,7 @@
         var offset = calcOffset(pct);
         slider.css((sliderOrientation==="vertical") ? "top" : "left", (sliderOrientation==="vertical") ? offset.ch : offset.cw);
         adjustContainer(offset);
-      }
+      };
 
       $(window).on("resize.twentytwenty", function(e) {
         adjustSlider(sliderPct);
