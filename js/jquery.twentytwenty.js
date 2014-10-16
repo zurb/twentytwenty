@@ -10,8 +10,8 @@
 			var beforeDirection = (sliderOrientation === 'vertical') ? 'down' : 'left';
 			var afterDirection = (sliderOrientation === 'vertical') ? 'up' : 'right';
 
-			var beforeImg = container.children(":first");
-			var afterImg = container.children(":last");
+			var before = container.children().eq(0);
+			var after = container.children().eq(1);
 			container.wrap("<div class='twentytwenty-wrapper twentytwenty-" + sliderOrientation + "'></div>");
 			container.append("<div class='twentytwenty-overlay'></div>");
 			container.append("<div class='twentytwenty-handle'></div>");
@@ -19,16 +19,16 @@
 			slider.append("<span class='twentytwenty-" + beforeDirection + "-arrow'></span>");
 			slider.append("<span class='twentytwenty-" + afterDirection + "-arrow'></span>");
 			container.addClass("twentytwenty-container");
-			beforeImg.addClass("twentytwenty-before");
-			afterImg.addClass("twentytwenty-after");
+			before.addClass("twentytwenty-before");
+			after.addClass("twentytwenty-after");
 
 			var overlay = container.find(".twentytwenty-overlay");
 			overlay.append("<div class='twentytwenty-before-label'></div>");
 			overlay.append("<div class='twentytwenty-after-label'></div>");
 
 			var calcOffset = function(dimensionPct) {
-				var w = beforeImg.width();
-				var h = beforeImg.height();
+				var w = before.width();
+				var h = before.height();
 				return {
 					w: w+"px",
 					h: h+"px",
@@ -39,10 +39,10 @@
 
 			var adjustContainer = function(offset) {
 				if (sliderOrientation === 'vertical') {
-					beforeImg.css("clip", "rect(0,"+offset.w+","+offset.ch+",0)");
+					before.css("clip", "rect(0,"+offset.w+","+offset.ch+",0)");
 				}
 				else {
-					beforeImg.css("clip", "rect(0,"+offset.cw+","+offset.h+",0)");
+					before.css("clip", "rect(0,"+offset.cw+","+offset.h+",0)");
 				}
 				container.css("height", offset.h);
 			};
@@ -70,8 +70,8 @@
 				container.addClass("active");
 				offsetX = container.offset().left;
 				offsetY = container.offset().top;
-				imgWidth = beforeImg.width(); 
-				imgHeight = beforeImg.height();          
+				imgWidth = before.width(); 
+				imgHeight = before.height();          
 			});
 
 			slider.on("moveend", function(e) {
