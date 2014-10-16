@@ -6,67 +6,105 @@
 <!--[if IE 9 ]>    <html class="lt-ie10" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>twentytwenty</title>
-  <link href="css/foundation.css" rel="stylesheet" type="text/css" />
-  <link href="css/twentytwenty.css" rel="stylesheet" type="text/css" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>twentytwenty</title>
+	<link href="css/foundation.css" rel="stylesheet" type="text/css" />
+	<link href="css/twentytwenty.css" rel="stylesheet" type="text/css" />
 </head>
-  <body>
+<body>
 
-    <div class="row" style="margin-top: 2em;">
-      <div class="large-4 columns">
-        <h3>Basic Usage</h3>
-        <p>Demonstrates basic usage of the plugin.</p>
-      </div>
-      <div class="large-8 columns">
-        <div class="twentytwenty-container">
-          <img src="img/1_1.jpg" />
-          <img src="img/1_2.jpg" />
-        </div>
-      </div>
-    </div>
-    
-    <div class="row" style="margin-top: 2em; margin-bottom: 2em;">
-      <div class="large-4 columns">
-        <h3>Vertical Orientation</h3>
-        <p>Demonstrates sliding up and down.</p>
-      </div>
-      <div class="large-8 columns">
-        <div class="twentytwenty-container" data-orientation="vertical">
-          <img src="img/1_1.jpg" />
-          <img src="img/1_2.jpg" />
-        </div>
-      </div>
-    </div>
+	<div class="row" style="margin-top: 2em;">
+		<div class="large-4 columns">
+			<h3>Basic Usage</h3>
+			<p>Demonstrates basic usage of the plugin.</p>
+		</div>
+		<div class="large-8 columns">
+			<div class="twentytwenty-container">
+				<img src="img/1_1.jpg" />
+				<img src="img/1_2.jpg" />
+			</div>
+		</div>
+	</div>
+	
+	<div class="row" style="margin-top: 2em; margin-bottom: 2em;">
+		<div class="large-4 columns">
+			<h3>Vertical Orientation</h3>
+			<p>Demonstrates sliding up and down.</p>
+		</div>
+		<div class="large-8 columns">
+			<div class="twentytwenty-container" data-orientation="vertical">
+				<img src="img/1_1.jpg" />
+				<img src="img/1_2.jpg" />
+			</div>
+		</div>
+	</div>
 
-    <div class="row" style="margin-bottom: 2em;">
-      <div class="large-4 columns">
-        <h3>Side by side</h3>
-        <p>Using multiple comparisons at once.</p>
-      </div>
-      <div class="large-4 columns">
-        <div class="twentytwenty-container">
-          <img src="img/2_1.jpg" />
-          <img src="img/2_2.jpg" />
-        </div>
-      </div>
-      <div class="large-4 columns">
-        <div class="twentytwenty-container">
-          <img src="img/3_1.jpg" />
-          <img src="img/3_2.jpg" />
-        </div>
-      </div>
-    </div>
-    
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script src="js/jquery.event.move.js"></script>
-    <script src="js/jquery.twentytwenty.js"></script>
-    <script>
-    $(window).load(function(){
-      $(".twentytwenty-container[data-orientation!='vertical']").twentytwenty({default_offset_pct: 0.7});
-      $(".twentytwenty-container[data-orientation='vertical']").twentytwenty({default_offset_pct: 0.3, orientation: 'vertical'});
-    });
-    </script>
-  </body>
+	<div class="row" style="margin-bottom: 2em;">
+		<div class="large-4 columns">
+			<h3>Side by side</h3>
+			<p>Using multiple comparisons at once.</p>
+		</div>
+		<div class="large-4 columns">
+			<div class="twentytwenty-container">
+				<img src="img/2_1.jpg" />
+				<img src="img/2_2.jpg" />
+			</div>
+		</div>
+		<div class="large-4 columns">
+			<div class="twentytwenty-container">
+				<img src="img/3_1.jpg" />
+				<img src="img/3_2.jpg" />
+			</div>
+		</div>
+	</div>
+
+	<div class="row" style="margin-top: 2em; margin-bottom: 2em;">
+		<div class="large-4 columns">
+			<h3>Basic DIV</h3>
+			<p>Demonstrates sliding up and down.</p>
+		</div>
+		<div class="large-8 columns">
+			<div class="twentytwenty-container" data-type="div">
+				<div>
+					<h2 style="text-align: center;">Blok 1</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ullamcorper vel velit aliquet fermentum. Etiam eu vulputate purus. Integer mauris odio, vestibulum at turpis eget, pellentesque pellentesque turpis. Morbi scelerisque pulvinar ex ut tincidunt. Suspendisse potenti. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque gravida consequat nisi vitae ullamcorper. Nam suscipit tortor leo, sagittis mollis felis elementum quis. Integer facilisis tellus turpis, id rhoncus dui elementum ac. Quisque sit amet fermentum tellus</p>
+				</div>
+				<div>
+					<h2 style="text-align: center;">Blok 2</h2>
+					<p>Praesent non leo cursus, laoreet nisi a, cursus massa. Vestibulum commodo dui urna, ac scelerisque elit viverra quis. Nunc luctus risus sit amet convallis maximus. Aenean odio metus, rhoncus consequat mattis nec, pretium efficitur lectus. Integer maximus aliquet purus. Duis vulputate venenatis placerat. Morbi condimentum, lectus non ultricies accumsan, est neque gravida nulla, ut fermentum leo velit in ligula. Nunc placerat tempor mauris a consequat. Cras est urna, dignissim et dui vel, molestie posuere urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum sit amet maximus nisl. Aliquam fringilla leo eu lectus porta, a laoreet neque rutrum. Aliquam bibendum tincidunt velit. Nullam dolor tellus, fringilla sed augue a, commodo dapibus erat. </p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row" style="margin-top: 2em; margin-bottom: 2em;">
+		<div class="large-4 columns">
+			<h3>DIV Vertical Orientation</h3>
+			<p>Demonstrates sliding up and down.</p>
+		</div>
+		<div class="large-8 columns">
+			<div class="twentytwenty-container" data-orientation="vertical">
+				<div>
+					<h2 style="text-align: center;">Blok 1</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ullamcorper vel velit aliquet fermentum. Etiam eu vulputate purus. Integer mauris odio, vestibulum at turpis eget, pellentesque pellentesque turpis. Morbi scelerisque pulvinar ex ut tincidunt. Suspendisse potenti. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque gravida consequat nisi vitae ullamcorper. Nam suscipit tortor leo, sagittis mollis felis elementum quis. Integer facilisis tellus turpis, id rhoncus dui elementum ac. Quisque sit amet fermentum tellus</p>
+				</div>
+				<div>
+					<h2 style="text-align: center;">Blok 2</h2>
+					<p>Praesent non leo cursus, laoreet nisi a, cursus massa. Vestibulum commodo dui urna, ac scelerisque elit viverra quis. Nunc luctus risus sit amet convallis maximus. Aenean odio metus, rhoncus consequat mattis nec, pretium efficitur lectus. Integer maximus aliquet purus. Duis vulputate venenatis placerat. Morbi condimentum, lectus non ultricies accumsan, est neque gravida nulla, ut fermentum leo velit in ligula. Nunc placerat tempor mauris a consequat. Cras est urna, dignissim et dui vel, molestie posuere urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum sit amet maximus nisl. Aliquam fringilla leo eu lectus porta, a laoreet neque rutrum. Aliquam bibendum tincidunt velit. Nullam dolor tellus, fringilla sed augue a, commodo dapibus erat. </p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script src="js/jquery.event.move.js"></script>
+	<script src="js/jquery.twentytwenty.js"></script>
+	<script>
+	$(window).load(function(){
+		$(".twentytwenty-container[data-orientation!='vertical']").twentytwenty({default_offset_pct: 0.7});
+		$(".twentytwenty-container[data-orientation='vertical']").twentytwenty({default_offset_pct: 0.3, orientation: 'vertical'});
+	});
+	</script>
+</body>
 </html>
