@@ -41,6 +41,17 @@ $(window).load(function(){
   });
 });
 ```
+### Options via HTML5 Data Atributes
+
+
+```html
+<div id="container1" data-orientation="vertical" data-default_offset_pct="0.7">
+ <!-- The before image is first -->
+ <img src="http://placehold.it/400x200&text=1" />
+ <!-- The after image is last -->
+ <img src="http://placehold.it/400x200&text=2" />
+</div>
+```
 
 ### Prevent FOUC
 
