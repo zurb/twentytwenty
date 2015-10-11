@@ -40,10 +40,12 @@
 
       var adjustContainer = function(offset) {
       	if (sliderOrientation === 'vertical') {
-      	  beforeImg.css("clip", "rect(0,"+offset.w+","+offset.ch+",0)");
+          beforeImg.css("clip", "rect(0,"+offset.w+","+offset.ch+",0)");
+          afterImg.css("clip", "rect("+offset.ch+","+offset.w+","+offset.h+",0)");
       	}
       	else {
           beforeImg.css("clip", "rect(0,"+offset.cw+","+offset.h+",0)");
+          afterImg.css("clip", "rect(0,"+offset.w+","+offset.h+","+offset.cw+")");
     	}
         container.css("height", offset.h);
       };
