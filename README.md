@@ -1,3 +1,18 @@
+# Update 11/31
+
+After seeing this plugin featured on numerous sites such as [ProductHunt](https://www.producthunt.com/tech/twentytwenty) I've realized that I haven't given this plugin the attention it deserves. It's time to do some code cleanup, address outstanding issues, and add in some new functionality. In short here's what you can expect by the end of the year:
+
+## Proposed changes for `v2`
+  - Address all bugs reported in original GitHub repo
+  - See if `jquery.event.move` can be removed as a dependency
+  - Test plugin with other popular frameworks (i.e. Bootstrap)
+  - Add in support to automatically initialize plugin on `$(window).load`
+  - AngularJS support
+
+Drop me a line if there's something else you'd like to see!
+
+# Documentation for `v1.0.0`
+
 ## Basic usage
 
 Include the javascript and css files.
