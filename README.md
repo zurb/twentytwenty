@@ -1,24 +1,31 @@
-# Update 11/31
+# Version 2.0.0-dev
+
+**NOTE:** This is a work in progress. Once everything is stable I will tag a new release and post a link here!
+
+TwentyTwenty is the best way to showcase the differences between 2 images! This fork is based off the original work I did at [ZURB](http://zurb.com).
 
 After seeing this plugin featured on numerous sites such as [ProductHunt](https://www.producthunt.com/tech/twentytwenty) I've realized that I haven't given this plugin the attention it deserves. It's time to do some code cleanup, address outstanding issues, and add in some new functionality. In short here's what you can expect by the end of the year:
 
-## Proposed changes for `v2`
-  - Address all bugs reported in original GitHub repo
-  - See if `jquery.event.move` can be removed as a dependency
-  - Test plugin with other popular frameworks (i.e. Bootstrap)
-  - Add in support to automatically initialize plugin on `$(window).load`
-  - AngularJS support
+## Roadmap
+  - [X] Use [gulp](http://gulpjs.com/) for builds
+  - [X] Replace Ruby/Company with Libsass/Autoprefixer
+  - [X] Replace all snake_case with camelCase
+  - [ ] AngularJS support
+  - [ ] See if `jquery.event.move` can be removed as a dependency
+  - [ ] Test plugins with other popular frameworks
+  - [ ] Address all bugs reported in original GitHub repo
+  - [ ] Distribute through package managers such as [bower](http://bower.io)
 
-Drop me a line if there's something else you'd like to see!
+Open up an issue if there's something else you'd like to see!
 
-# Documentation for `v1.0.0`
+# Documentation
 
 ## Basic usage
 
 Include the javascript and css files.
 
 ```html
-<script src="js/jquery-2.1.0.min.js" type="text/javascript"></script>
+<script src="js/jquery.min.js" type="text/javascript"></script>
 <script src="js/jquery.event.move.js" type="text/javascript"></script>
 <script src="js/jquery.twentytwenty.js" type="text/javascript"></script>
 <link rel="stylesheet" href="css/twentytwenty.css" type="text/css" media="screen" />
@@ -51,7 +58,7 @@ $(window).load(function(){
 ```js
 $(window).load(function(){
   $(".twentytwenty-container").twentytwenty({
-    default_offset_pct: 0.7, // How much of the before image is visible when the page loads
+    defaultOffsetPct: 0.7, // How much of the before image is visible when the page loads
     orientation: 'vertical' // Orientation of the before and after images ('horizontal' or 'vertical')
   });
 });
@@ -79,19 +86,6 @@ $(window).load(function(){
   $(".twentytwenty-container").twentytwenty();
 });
 ```
-
-# Compass Quickstart
-
-Run the following commands to get up and running quickly:
-
-```bash
-git clone git@github.com:zurb/compareit.git ~/Sites/compareit
-cd compareit
-bundle install
-bundle exec compass compile
-```
-
-All default [Sass](http://sass-lang.com/) variables can be found in `scss/twentytwenty.scss`.
 
 ## Support
 
