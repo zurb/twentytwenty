@@ -8,34 +8,50 @@ var rename = require('gulp-rename');
 var clean = require('gulp-clean');
 var gulpSequence = require('gulp-sequence');
 
-gulp.task('build-css', function () {
-  return gulp.src('src/scss/twentytwenty.scss')
+var paths = {
+  js: 'src/js/*.js',
+  dist_js: 'dist/js',
+  scss: 'src/scss/*.scss',
+  dist_scss: 'dist/css'
+};
+
+gulp.task('build:css', function () {
+  return gulp.src(paths.scss)
     .pipe(sass())
     .pipe(autoprefixer({
       browsers: ['> 1%'],
       cascade: false
     }))
-    .pipe(gulp.dest('dist/css'))
+    .pipe(gulp.dest(paths.dist_scss))
 });
 
 gulp.task('jscs', function () {
-  return gulp.src('src/js/jquery.twentytwenty.js')
+  return gulp.src(paths.js)
     .pipe(jscs())
-    .pipe(jscs.reporter());
+    .pipe(jscs.reporter())
+    .pipe(jscs.reporter('fail'));
 });
 
 gulp.task('jshint', function () {
-  return gulp.src('src/js/jquery.twentytwenty.js')
+  return gulp.src(paths.js)
     .pipe(jshint())
-    .pipe(jshint.reporter());
+    .pipe(jshint.reporter())
+    .pipe(jshint.reporter('fail'));
 });
 
-gulp.task('build-js', function () {
-  return gulp.src('src/js/jquery.twentytwenty.js')
-    .pipe(gulp.dest('dist/js'))
+gulp.task('server', function () {
+  var express = require('express');
+  var app = express();
+  app.use(express.static(__dirname));
+  app.listen(3000, '0.0.0.0');
+});
+
+gulp.task('build:js', function () {
+  return gulp.src(paths.js)
+    .pipe(gulp.dest(paths.dist_js))
     .pipe(uglify())
-    .pipe(rename('jquery.twentytwenty.min.js'))
-    .pipe(gulp.dest('dist/js'))
+    .pipe(rename({extname: '.min.js'}))
+    .pipe(gulp.dest(paths.dist_js));
 });
 
 gulp.task('clean', function () {
@@ -43,6 +59,12 @@ gulp.task('clean', function () {
     .pipe(clean());
 });
 
-gulp.task('test', ['jshint', 'jscs']);
-gulp.task('build', gulpSequence(['jscs', 'jshint'], 'clean', ['build-js', 'build-css']));
-gulp.task('default', ['build']);
+gulp.task('watch', function() {
+  gulp.watch(paths.scss, ['build:css']);
+  gulp.watch(paths.js, ['test:js', 'build:js']);
+});
+
+gulp.task('test');
+gulp.task('test:js', ['jshint', 'jscs']);
+gulp.task('build', gulpSequence(['jscs', 'jshint'], 'clean', ['build:js', 'build:css']));
+gulp.task('default', ['build', 'server', 'watch']);

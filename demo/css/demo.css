@@ -1,0 +1,31 @@
+body {
+  font-family: sans-serif;
+}
+
+.tt-container {
+  margin: 0 auto;
+  width: 80%;
+  min-width: 600px;
+  clear: both;
+}
+
+.tt-desc {
+  width: 25%;
+  max-width: 200px;
+  float: left;
+}
+
+.tt-example {
+  width: 75%;
+  max-width: 600px;
+  float: left;
+  margin-bottom: 20px;
+}
+
+.tt-container.tt-half .tt-example {
+  width: 290px;
+}
+
+.tt-container.tt-half .tt-example:last-of-type {
+  margin-left: 20px;
+}

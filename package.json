@@ -13,6 +13,7 @@
     "npm": "2.14.7"
   },
   "dependencies": {
+    "express": "^4.13.3",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-clean": "^0.3.1",

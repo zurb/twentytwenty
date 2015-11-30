@@ -20,7 +20,44 @@ Open up an issue if there's something else you'd like to see!
 
 # Documentation
 
-## Basic usage
+## AngularJS (NEW)
+
+**Note:** This is an alpha release of the directive. Any feedback is greatly appreciated!
+
+Include the javascript and css files.
+
+```html
+<script src="js/angular.js" type="text/javascript"></script>
+<script src="js/angular-touch.js" type="text/javascript"></script>
+<script src="js/angular-twentytwenty.js" type="text/javascript"></script>
+<link rel="stylesheet" href="css/twentytwenty.css" type="text/css" media="screen" />
+```
+
+You might need to change the paths to match your setup.
+
+Then add the `tt` module as a dependency to your application module:
+
+```js
+angular.module('MyApp', ['tt']);
+```
+
+And then you can use the `twentytwenty` directive like so:
+
+```html
+<twentytwenty
+  before="img/<BEFORE_IMAGE>.jpg" 
+  after="img/<AFTER_IMAGE>.jpg">
+</twentytwenty>
+```
+
+### Dependencies
+
+  * [angular (~> 1.4)](https://angularjs.org/)
+  * [angular-touch](https://docs.angularjs.org/api/ngTouch)
+
+## jQuery
+
+### Basic usage
 
 Include the javascript and css files.
 
@@ -52,7 +89,7 @@ $(window).load(function(){
 });
 ```
 
-### Options
+#### Options
 
 
 ```js
@@ -64,7 +101,7 @@ $(window).load(function(){
 });
 ```
 
-### Prevent FOUC
+#### Prevent FOUC
 
 If you want to avoid a [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) you can append the `twentytwenty-container` class to your container like so:
 
@@ -77,7 +114,7 @@ If you want to avoid a [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_con
 </div>
 ```
 
-### Multiple instances
+#### Multiple instances
 
 If you want to use multiple instances of this plugin on a single page you can target the container class:
 
@@ -87,6 +124,11 @@ $(window).load(function(){
 });
 ```
 
+### Dependencies
+
+  * [jquery](http://jquery.com/)
+  * [jquery.event.move](https://github.com/stephband/jquery.event.move)
+
 ## Support
 
 - IE8+
@@ -95,8 +137,3 @@ $(window).load(function(){
 - Safari
 - Android 
 - iOS (iPhone, iPad)
-
-## Dependencies
-
-  * [jquery](http://jquery.com/)
-  * [jquery.event.move](https://github.com/stephband/jquery.event.move)
