@@ -35,6 +35,16 @@ angular.module('tt', ['ngTouch'])
           adjustContainer($scope.h, getXOffset(e));
         };
 
+        var isThrottled = false;
+        var adjustContainerOnSwipeThrottled = function(e) {
+          if (isThrottled) return;
+          isThrottled = true;
+          setTimeout(function() {
+            adjustContainerOnSwipe(e);
+            isThrottled = false;
+          }, 30);
+        };
+
         var getXOffset = function(e) {
           return e.x - Math.abs($element[0].getBoundingClientRect().left);
         };
@@ -63,7 +73,7 @@ angular.module('tt', ['ngTouch'])
 
         $swipe.bind($element, {
           start: adjustContainerOnSwipe,
-          move: adjustContainerOnSwipe,
+          move: adjustContainerOnSwipeThrottled,
           end: adjustContainerOnSwipe
         });
 
