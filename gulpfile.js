@@ -22,7 +22,7 @@ gulp.task('build:css', function () {
       browsers: ['> 1%'],
       cascade: false
     }))
-    .pipe(gulp.dest(paths.dist_scss))
+    .pipe(gulp.dest(paths.dist_scss));
 });
 
 gulp.task('jscs', function () {
