@@ -4,10 +4,12 @@ angular.module('tt', ['ngTouch'])
       restrict: 'E',
       scope: {
         before: '@',
-        after: '@'
+        after: '@',
+        offset: '@',
+        orientation: '@'
       },
       template: function() {
-        return '<div class="twentytwenty-wrapper twentytwenty-horizontal">' +
+        return '<div class="twentytwenty-wrapper twentytwenty-{{orientation}}">' +
           '<div class="twentytwenty-container" style="height:{{h}}px">' +
             '<img class="twentytwenty-before" src="{{before}}" style="clip: rect(0px, {{x}}px, {{h}}px, 0px)">' +
             '<img class="twentytwenty-after" src="{{after}}">' +
@@ -24,6 +26,8 @@ angular.module('tt', ['ngTouch'])
       },
 
       controller: ['$scope', '$swipe', '$element', function($scope, $swipe, $element) {
+        $scope.orientation = $scope.orientation || 'horizontal';
+        $scope.defaultOffsetPct = parseFloat($scope.offset) || 0.5;
         var beforeImg = angular.element($element.find('img')[0]);
         var adjustContainer = function(h, x) {
           $scope.h = h;
@@ -51,7 +55,7 @@ angular.module('tt', ['ngTouch'])
 
         var setDimensions = function() {
           $scope.w = beforeImg[0].offsetWidth;
-          var x = $scope.w / 2;
+          var x = $scope.w * $scope.offset;
           var h = beforeImg[0].offsetHeight;
           adjustContainer(h, x);
         };
