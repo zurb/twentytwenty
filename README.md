@@ -137,7 +137,7 @@ $(window).load(function(){
 - Safari
 - Android 
 - iOS (iPhone, iPad)
-- 
+
 # Special thanks to our supporters
 
 [![BrowserStack](https://s3.amazonaws.com/assets.markhay.es/browser_stack_logo.png)](https://www.browserstack.com/)
