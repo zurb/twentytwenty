@@ -1,4 +1,7 @@
-angular.module('tt', ['ngTouch'])
+require('../scss/twentytwenty.scss');
+var TT = require('./core.js');
+
+angular.module('tt', [])
   .directive('twentytwenty', ['$window', function($window) {
     return {
       restrict: 'E',
@@ -9,82 +12,68 @@ angular.module('tt', ['ngTouch'])
         orientation: '@'
       },
       template: function() {
-        return '<div class="twentytwenty-wrapper twentytwenty-{{orientation}}">' +
-          '<div class="twentytwenty-container" style="height:{{h}}px">' +
-            '<img class="twentytwenty-before" src="{{before}}" style="clip: rect(0px, {{x}}px, {{h}}px, 0px)">' +
-            '<img class="twentytwenty-after" src="{{after}}">' +
-            '<div class="twentytwenty-overlay">' +
-              '<div class="twentytwenty-before-label"></div>' +
-              '<div class="twentytwenty-after-label"></div>' +
-            '</div>' +
-            '<div class="twentytwenty-handle" style="left:{{x}}px">' +
-              '<span class="twentytwenty-left-arrow"></span>' +
-              '<span class="twentytwenty-right-arrow"></span>' +
-            '</div>' +
-          '</div>' +
-        '</div>';
+        return require('../template/angular.html');
       },
 
-      controller: ['$scope', '$swipe', '$element', function($scope, $swipe, $element) {
+      controller: ['$scope', '$element', function($scope, $element) {
         $scope.orientation = $scope.orientation || 'horizontal';
         $scope.defaultOffsetPct = parseFloat($scope.offset) || 0.5;
-        var beforeImg = angular.element($element.find('img')[0]);
-        var adjustContainer = function(h, x) {
+        var $beforeImg = angular.element($element.find('img')[0]);
+        var isActive = false;
+        TT.setContainer($element[0]);
+        TT.setOrientation($scope.orientation);
+        TT.setOffsetPct($scope.defaultOffsetPct);
+
+        var adjustContainer = function(w, h, xOffset, yOffset) {
+          var offsetPct = TT.isHorizontal() ? (xOffset / $scope.w) : (yOffset / $scope.h);
+          TT.setOffsetPct(offsetPct);
+          $scope.w = w;
           $scope.h = h;
-          $scope.x = x;
+          $scope.offset = TT.isHorizontal() ? xOffset : yOffset;
           $scope.$apply();
         };
 
         var adjustContainerOnSwipe = function(e) {
-          adjustContainer($scope.h, getXOffset(e));
-        };
-
-        var isThrottled = false;
-        var adjustContainerOnSwipeThrottled = function(e) {
-          if (isThrottled) return;
-          isThrottled = true;
-          setTimeout(function() {
-            adjustContainerOnSwipe(e);
-            isThrottled = false;
-          }, 30);
-        };
-
-        var getXOffset = function(e) {
-          return e.x - Math.abs($element[0].getBoundingClientRect().left);
+          var offset = TT.calcOffset(e);
+          var offsetPct = TT.isHorizontal() ? (offset.x / $scope.w) : (offset.y / $scope.h);
+          TT.setOffsetPct(offsetPct);
+          $scope.offset = TT.isHorizontal() ? offset.x : offset.y;
+          $scope.$apply();
         };
 
         var setDimensions = function() {
-          $scope.w = beforeImg[0].offsetWidth;
-          var x = $scope.w * $scope.offset;
-          var h = beforeImg[0].offsetHeight;
-          adjustContainer(h, x);
-        };
-
-        var adjustDimensions = function() {
-          var newW = beforeImg[0].offsetWidth;
-          var x = (newW / $scope.w) * $scope.x;
-          var h = beforeImg[0].offsetHeight;
-          $scope.w = newW;
-          adjustContainer(h, x);
+          var d = TT.getDimensions($beforeImg);
+          adjustContainer(d.w, d.h, d.xOffset, d.yOffset);
         };
 
         // Set dimensions if image is loaded, otherwise wait
-        if (beforeImg[0].offsetHeight === 0) {
-          beforeImg.bind('load', setDimensions);
+        if ($beforeImg[0].offsetHeight === 0) {
+          $beforeImg.bind('load', setDimensions);
         } else {
           setDimensions();
         }
 
-        $swipe.bind($element, {
-          start: adjustContainerOnSwipe,
-          move: adjustContainerOnSwipeThrottled,
-          end: adjustContainerOnSwipe
+        $element.bind('mousedown touchstart', function(e) {
+          isActive = true;
+          adjustContainerOnSwipe(e);
+        });
+
+        $element.bind('mousemove touchmove', function(e) {
+          if (isActive)
+            TT.fireOnMovement(adjustContainerOnSwipe, e);
+        });
+
+        $element.bind('mouseup touchend', function(e) {
+          isActive = false;
+          adjustContainerOnSwipe(e);
         });
 
         angular.element($window).bind('resize', function() {
-          adjustDimensions();
+          setDimensions();
           $scope.$apply();
         });
+
+        $scope.isHorizontal = TT.isHorizontal;
       }]
     };
   }]);
