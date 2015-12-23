@@ -7,10 +7,10 @@ TwentyTwenty is the best way to showcase the differences between 2 images! This 
 After seeing this plugin featured on numerous sites such as [ProductHunt](https://www.producthunt.com/tech/twentytwenty) I've realized that I haven't given this plugin the attention it deserves. It's time to do some code cleanup, address outstanding issues, and add in some new functionality. In short here's what you can expect by the end of the year:
 
 ## Roadmap
-  - [X] Use [gulp](http://gulpjs.com/) for builds
-  - [X] Replace Ruby/Company with Libsass/Autoprefixer
+  - [X] Use [webpack](https://webpack.github.io/) for builds
+  - [X] Replace Ruby/Compass with Libsass/Autoprefixer
   - [X] Replace all snake_case with camelCase
-  - [ ] AngularJS support
+  - [X] AngularJS support
   - [ ] See if `jquery.event.move` can be removed as a dependency
   - [ ] Test plugins with other popular frameworks
   - [ ] Address all bugs reported in original GitHub repo

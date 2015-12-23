@@ -1,0 +1,6 @@
+{
+  "preset": "airbnb",
+  "requireTrailingComma": false,
+  "failOnHint": true,
+  "emitErrors": true
+}
