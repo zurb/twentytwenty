@@ -1,6 +1,3 @@
-// 20/20 Class Prefix
-$pluginPrefix: "twentytwenty" !default;
-
 // 20/20 Handle Styles
 $twenty20-handle-color: #fff !default;
 $twenty20-handle-stroke: 3px !default;
@@ -103,13 +100,11 @@ $twenty20-label-radius: 2px !default;
 }
 
 // 20/20 Container
-.#{$pluginPrefix}-container {
+.twentytwenty-container {
   box-sizing: content-box;
   z-index: 0;
   overflow: hidden;
   position: relative;
-  -webkit-user-select: none;
-  -moz-user-select: none;
 
   img {
     max-width: 100%;
@@ -118,17 +113,17 @@ $twenty20-label-radius: 2px !default;
     display: block;
   }
 
-  &.active .#{$pluginPrefix}-overlay,
-  &.active :hover.#{$pluginPrefix}-overlay { background: rgba(#000,0);
+  &.active .twentytwenty-overlay,
+  &.active :hover.twentytwenty-overlay { background: rgba(#000,0);
 
-    .#{$pluginPrefix}-before-label,
-    .#{$pluginPrefix}-after-label { opacity: 0; }
+    .twentytwenty-before-label,
+    .twentytwenty-after-label { opacity: 0; }
   }
   * { box-sizing: content-box; }
 }
 
 // 20/20 Before Label
-.#{$pluginPrefix}-before-label {
+.twentytwenty-before-label {
   @extend %absolute-wh-position;
   @extend %label-transition-property;
   @extend %overlay-transition-duration;
@@ -142,7 +137,7 @@ $twenty20-label-radius: 2px !default;
 }
 
 // 20/20 After Label
-.#{$pluginPrefix}-after-label {
+.twentytwenty-after-label {
   @extend %absolute-wh-position;
   @extend %label-transition-property;
   @extend %overlay-transition-duration;
@@ -156,7 +151,7 @@ $twenty20-label-radius: 2px !default;
 }
 
 // 20/20 Horizontal Labels
-.#{$pluginPrefix}-horizontal .#{$pluginPrefix}-before-label {
+.twentytwenty-horizontal .twentytwenty-before-label {
 
   &:before {
      @extend %label-position-horizontal;
@@ -164,7 +159,7 @@ $twenty20-label-radius: 2px !default;
   }
 }
 
-.#{$pluginPrefix}-horizontal .#{$pluginPrefix}-after-label {
+.twentytwenty-horizontal .twentytwenty-after-label {
 
   &:before {
      @extend %label-position-horizontal;
@@ -173,7 +168,7 @@ $twenty20-label-radius: 2px !default;
 }
 
 // 20/20 Vertical Labels
-.#{$pluginPrefix}-vertical .#{$pluginPrefix}-before-label {
+.twentytwenty-vertical .twentytwenty-before-label {
 
   &:before {
      @extend %label-position-vertical;
@@ -181,7 +176,7 @@ $twenty20-label-radius: 2px !default;
   }
 }
 
-.#{$pluginPrefix}-vertical .#{$pluginPrefix}-after-label {
+.twentytwenty-vertical .twentytwenty-after-label {
 
   &:before {
      @extend %label-position-vertical;
@@ -190,7 +185,7 @@ $twenty20-label-radius: 2px !default;
 }
 
 // 20/20 Overlay
-.#{$pluginPrefix}-overlay {
+.twentytwenty-overlay {
   @extend %absolute-wh-position;
   @extend %overlay-transition-duration;
   transition-property: background;
@@ -199,16 +194,16 @@ $twenty20-label-radius: 2px !default;
 
   &:hover { background: $twenty20-overlay-bg;
 
-    .#{$pluginPrefix}-after-label { opacity: 1; }
-    .#{$pluginPrefix}-before-label { opacity: 1; }
+    .twentytwenty-after-label { opacity: 1; }
+    .twentytwenty-before-label { opacity: 1; }
   }
 }
 
-.#{$pluginPrefix}-before { z-index: 20; }
-.#{$pluginPrefix}-after { z-index: 10; }
+.twentytwenty-before { z-index: 20; }
+.twentytwenty-after { z-index: 10; }
 
 // 20/20 Handle Styles
-.#{$pluginPrefix}-handle {
+.twentytwenty-handle {
   height: $twenty20-handle-circle-width;
   width: $twenty20-handle-circle-width;
   position: absolute;
@@ -224,7 +219,7 @@ $twenty20-label-radius: 2px !default;
 }
 
 // 20/20 Horizontal Handle Styles
-.#{$pluginPrefix}-horizontal .#{$pluginPrefix}-handle {
+.twentytwenty-horizontal .twentytwenty-handle {
 
   &:before {
     @extend %handle-content;
@@ -244,7 +239,7 @@ $twenty20-label-radius: 2px !default;
 }
 
 // 20/20 Vertical Handle Styles
-.#{$pluginPrefix}-vertical .#{$pluginPrefix}-handle {
+.twentytwenty-vertical .twentytwenty-handle {
 
   &:before {
     @extend %handle-content;
@@ -264,7 +259,7 @@ $twenty20-label-radius: 2px !default;
 }
 
 // 20/20 Left Handle
-.#{$pluginPrefix}-left-arrow {
+.twentytwenty-left-arrow {
   border-right: $twenty20-handle-triangle-size solid $twenty20-handle-triangle-color;
   left: 50%;
   margin-left: -($twenty20-handle-triangle-size * 2) - $twenty20-handle-triangle-position;
@@ -272,7 +267,7 @@ $twenty20-label-radius: 2px !default;
 }
 
 // 20/20 Right Handle
-.#{$pluginPrefix}-right-arrow {
+.twentytwenty-right-arrow {
   border-left: $twenty20-handle-triangle-size solid $twenty20-handle-triangle-color;
   right: 50%;
   margin-right: -($twenty20-handle-triangle-size * 2) - $twenty20-handle-triangle-position;
@@ -280,7 +275,7 @@ $twenty20-label-radius: 2px !default;
 }
 
 // 20/20 Up Handle
-.#{$pluginPrefix}-up-arrow {
+.twentytwenty-up-arrow {
   border-bottom: $twenty20-handle-triangle-size solid $twenty20-handle-triangle-color;
   top: 50%;
   margin-top: -($twenty20-handle-triangle-size * 2) - $twenty20-handle-triangle-position;
@@ -288,7 +283,7 @@ $twenty20-label-radius: 2px !default;
 }
 
 // 20/20 Down Handle
-.#{$pluginPrefix}-down-arrow {
+.twentytwenty-down-arrow {
   border-top: $twenty20-handle-triangle-size solid $twenty20-handle-triangle-color;
   bottom: 50%;
   margin-bottom: -($twenty20-handle-triangle-size * 2) - $twenty20-handle-triangle-position;
