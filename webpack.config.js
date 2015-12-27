@@ -37,7 +37,7 @@ module.exports = {
         test: /\.scss$/, 
         loaders: [
           "style-loader",
-          "css-loader?sourceMap",
+          "css-loader",
           "autoprefixer-loader?browsers=last 2 version",
           "sass-loader?sourceMap"
         ]
