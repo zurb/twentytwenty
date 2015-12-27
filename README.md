@@ -28,10 +28,10 @@ Open up an issue if there's something else you'd like to see!
 Include the javascript and css files.
 
 ```html
-<script src="js/angular.js" type="text/javascript"></script>
-<script src="js/angular-touch.js" type="text/javascript"></script>
-<script src="js/angular-twentytwenty.js" type="text/javascript"></script>
-<link rel="stylesheet" href="css/twentytwenty.css" type="text/css" media="screen" />
+<script src='js/angular.js' type='text/javascript'></script>
+<script src='js/angular-touch.js' type='text/javascript'></script>
+<script src='js/angular-twentytwenty.js' type='text/javascript'></script>
+<link rel='stylesheet' href='css/twentytwenty.css' type='text/css' media='screen' />
 ```
 
 You might need to change the paths to match your setup.
@@ -46,8 +46,8 @@ And then you can use the `twentytwenty` directive like so:
 
 ```html
 <twentytwenty
-  before="img/<BEFORE_IMAGE>.jpg" 
-  after="img/<AFTER_IMAGE>.jpg">
+  before='img/<BEFORE_IMAGE>.jpg' 
+  after='img/<AFTER_IMAGE>.jpg'>
 </twentytwenty>
 ```
 
@@ -62,9 +62,8 @@ And then you can use the `twentytwenty` directive like so:
 Include the javascript and css files.
 
 ```html
-<script src="js/jquery.min.js" type="text/javascript"></script>
-<script src="js/jquery.twentytwenty.js" type="text/javascript"></script>
-<link rel="stylesheet" href="css/twentytwenty.css" type="text/css" media="screen" />
+<script src='js/jquery.min.js' type='text/javascript'></script>
+<script src='js/jquery.twentytwenty.js' type='text/javascript'></script>
 ``` 
 You might need to change the paths to match your setup.
 
@@ -72,19 +71,17 @@ You might need to change the paths to match your setup.
 After including the files you are ready to create a container that holds two images:
 
 ```html
-<div id="container1">
- <!-- The before image is first -->
- <img src="http://placehold.it/400x200&text=1" />
- <!-- The after image is last -->
- <img src="http://placehold.it/400x200&text=2" />
+<div class='twentytwenty-container'>
+ <img src='img/<BEFORE_IMAGE>.jpg' />
+ <img src='img/<AFTER_IMAGE>.jpg' />
 </div>
 ```
 
-Now initialize the plugin on the window load:
+Now initialize the plugin:
 
 ```
-$(window).load(function(){
-  $("#container1").twentytwenty();
+$(function(){
+  $('.twentytwenty-container').twentytwenty();
 });
 ```
 
@@ -92,36 +89,44 @@ $(window).load(function(){
 
 
 ```js
-$(window).load(function(){
-  $(".twentytwenty-container").twentytwenty({
+$(function() {
+  $('.twentytwenty-container').twentytwenty({
     defaultOffsetPct: 0.7, // How much of the before image is visible when the page loads
     orientation: 'vertical' // Orientation of the before and after images ('horizontal' or 'vertical')
   });
 });
 ```
 
-#### Prevent FOUC
+### Multiple Instances
 
-If you want to avoid a [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) you can append the `twentytwenty-container` class to your container like so:
+If you want to load multiple instances with different settings, you can initialize them like so:
 
 ```html
-<div id="container1" class="twentytwenty-container">
- <!-- The before image is first -->
- <img src="http://placehold.it/400x200&text=1" />
- <!-- The after image is last -->
- <img src="http://placehold.it/400x200&text=2" />
+<div id='container1' class='twentytwenty-container'>
+ <img src='img/<BEFORE_IMAGE>.jpg' />
+ <img src='img/<AFTER_IMAGE>.jpg' />
+</div>
+
+<div id='container2' class='twentytwenty-container'>
+ <img src='img/<BEFORE_IMAGE>.jpg' />
+ <img src='img/<AFTER_IMAGE>.jpg' />
 </div>
 ```
 
-#### Multiple instances
-
-If you want to use multiple instances of this plugin on a single page you can target the container class:
+And then:
 
 ```js
-$(window).load(function(){
-  $(".twentytwenty-container").twentytwenty();
+$(function() {
+  $('#container1').twentytwenty({
+    defaultOffsetPct: 0.9
+  });
+
+$('#container1').twentytwenty({
+    orientation: 'vertical'
+  });
 });
 ```
+
 
 ### Dependencies
 
