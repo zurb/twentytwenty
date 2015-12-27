@@ -1,0 +1,19 @@
+<div class="twentytwenty-wrapper twentytwenty-{{orientation}}">
+  <div class="twentytwenty-container" style="height:{{h}}px">
+    <img class="twentytwenty-before" ng-src="{{before}}" style="clip: rect(0px, {{offset}}px, {{h}}px, 0px)" ng-if="isHorizontal">
+    <img class="twentytwenty-before" ng-src="{{before}}" style="clip: rect(0px, {{w}}px, {{offset}}px, 0px)" ng-if="!isHorizontal">
+    <img class="twentytwenty-after" src="{{after}}">
+    <div class="twentytwenty-overlay">
+      <div class="twentytwenty-before-label"></div>
+      <div class="twentytwenty-after-label"></div>
+    </div>
+    <div class="twentytwenty-handle" style="left:{{offset}}px" ng-if="isHorizontal">
+      <span class="twentytwenty-left-arrow"></span>
+      <span class="twentytwenty-right-arrow"></span>
+    </div>
+    <div class="twentytwenty-handle" style="top:{{offset}}px" ng-if="!isHorizontal">
+      <span class="twentytwenty-down-arrow"></span>
+      <span class="twentytwenty-up-arrow"></span>
+    </div>
+  </div>
+</div>

@@ -17,32 +17,30 @@ angular.module('tt', [])
 
       controller: ['$scope', '$element', function($scope, $element) {
         $scope.orientation = $scope.orientation || 'horizontal';
-        $scope.defaultOffsetPct = parseFloat($scope.offset) || 0.5;
+        $scope.offsetPct = parseFloat($scope.offset) || 0.5;
         var $beforeImg = angular.element($element.find('img')[0]);
         var isActive = false;
-        TT.setContainer($element[0]);
-        TT.setOrientation($scope.orientation);
-        TT.setOffsetPct($scope.defaultOffsetPct);
 
         var adjustContainer = function(w, h, xOffset, yOffset) {
-          var offsetPct = TT.isHorizontal() ? (xOffset / $scope.w) : (yOffset / $scope.h);
-          TT.setOffsetPct(offsetPct);
+          var offsetPct = TT.isHorizontal($scope.orientation) ?
+            (xOffset / $scope.w) : (yOffset / $scope.h);
           $scope.w = w;
           $scope.h = h;
-          $scope.offset = TT.isHorizontal() ? xOffset : yOffset;
+          $scope.offset = TT.isHorizontal($scope.orientation) ? xOffset : yOffset;
           $scope.$apply();
         };
 
         var adjustContainerOnSwipe = function(e) {
-          var offset = TT.calcOffset(e);
-          var offsetPct = TT.isHorizontal() ? (offset.x / $scope.w) : (offset.y / $scope.h);
-          TT.setOffsetPct(offsetPct);
-          $scope.offset = TT.isHorizontal() ? offset.x : offset.y;
+          var offset = TT.calcOffset($element, e);
+          var offsetPct = TT.isHorizontal($scope.orientation) ?
+            (offset.x / $scope.w) : (offset.y / $scope.h);
+          $scope.offsetPct = offsetPct;
+          $scope.offset = TT.isHorizontal($scope.orientation) ? offset.x : offset.y;
           $scope.$apply();
         };
 
         var setDimensions = function() {
-          var d = TT.getDimensions($beforeImg);
+          var d = TT.getDimensions($beforeImg, $scope.offsetPct);
           adjustContainer(d.w, d.h, d.xOffset, d.yOffset);
         };
 
@@ -73,7 +71,7 @@ angular.module('tt', [])
           $scope.$apply();
         });
 
-        $scope.isHorizontal = TT.isHorizontal;
+        $scope.isHorizontal = TT.isHorizontal($scope.orientation);
       }]
     };
   }]);

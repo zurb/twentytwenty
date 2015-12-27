@@ -1,9 +1,12 @@
+require('../scss/twentytwenty.scss');
+var TT = require('./core.js');
+
 (function($) {
 
   $.fn.twentytwenty = function(options) {
     options = $.extend({defaultOffsetPct: 0.5, orientation: 'horizontal'}, options);
     return this.each(function() {
-
+      var isActive = false;
       var sliderPct = options.defaultOffsetPct;
       var container = $(this);
       var sliderOrientation = options.orientation;
@@ -26,78 +29,60 @@
       overlay.append('<div class="twentytwenty-before-label"></div>');
       overlay.append('<div class="twentytwenty-after-label"></div>');
 
-      var calcOffset = function(dimensionPct) {
-        var w = beforeImg.width();
-        var h = beforeImg.height();
-        return {
-          w: w + 'px',
-          h: h + 'px',
-          cw: (dimensionPct * w) + 'px',
-          ch: (dimensionPct * h) + 'px',
-        };
+      var setDimensions = function(w, h, xOffset, yOffset) {
+        container.css({
+          width: w + 'px',
+          height: h + 'px'
+        });
+
+        if (TT.isHorizontal(sliderOrientation))
+          beforeImg.css('clip', 'rect(0,' + xOffset + 'px, ' + h + 'px, 0)');
+        else
+          beforeImg.css('clip', 'rect(0,' + w + 'px, ' + yOffset + 'px, 0)');
       };
 
-      var adjustContainer = function(offset) {
-        if (sliderOrientation === 'vertical') {
-          beforeImg.css('clip', 'rect(0,' + offset.w + ',' + offset.ch + ',0)');
+      var adjustContainerOnSwipe = function(e) {
+        var w = beforeImg[0].offsetWidth;
+        var h = beforeImg[0].offsetHeight;
+        var offset = TT.calcOffset(container, e);
+        var offsetPct = TT.isHorizontal(sliderOrientation) ? (offset.x / w) : (offset.y / h);
+        var d = TT.getDimensions(beforeImg, offsetPct);
+        console.info('offset.x=', offset.x);
+        if (TT.isHorizontal(sliderOrientation)) {
+          beforeImg.css('clip', 'rect(0,' + offset.x + 'px, ' + d.h + 'px, 0)');
+          slider.css('left', offset.x + 'px');
         } else {
-          beforeImg.css('clip', 'rect(0,' + offset.cw + ',' + offset.h + ',0)');
+          beforeImg.css('clip', 'rect(0,' + d.w + 'px, ' + offset.y + 'px, 0)');
+          slider.css('top', offset.y + 'px');
         }
 
-        container.css('height', offset.h);
       };
 
-      var adjustSlider = function(pct) {
-        var offset = calcOffset(pct);
-        slider.css((sliderOrientation === 'vertical') ? 'top' : 'left', (sliderOrientation === 'vertical') ? offset.ch : offset.cw);
-        adjustContainer(offset);
-      };
-
-      $(window).on('resize.twentytwenty', function(e) {
-        adjustSlider(sliderPct);
-      });
-
-      var offsetX = 0;
-      var imgWidth = 0;
-
-      slider.on('movestart', function(e) {
-        if (((e.distX > e.distY && e.distX < -e.distY) || (e.distX < e.distY && e.distX > -e.distY)) && sliderOrientation !== 'vertical') {
-          e.preventDefault();
-        } else if (((e.distX < e.distY && e.distX < -e.distY) || (e.distX > e.distY && e.distX > -e.distY)) && sliderOrientation === 'vertical') {
-          e.preventDefault();
-        }
-
-        container.addClass('active');
-        offsetX = container.offset().left;
-        offsetY = container.offset().top;
-        imgWidth = beforeImg.width();
-        imgHeight = beforeImg.height();
-      });
-
-      slider.on('moveend', function(e) {
-        container.removeClass('active');
-      });
-
-      slider.on('move', function(e) {
-        if (container.hasClass('active')) {
-          sliderPct = (sliderOrientation === 'vertical') ? (e.pageY - offsetY) / imgHeight : (e.pageX - offsetX) / imgWidth;
-          if (sliderPct < 0) {
-            sliderPct = 0;
+      container
+        .on('mousedown', function(e) {
+          isActive = true;
+          adjustContainerOnSwipe(e);
+        })
+        .on('mousemove', function(e) {
+          if (isActive) {
+            adjustContainerOnSwipe(e);
           }
+        })
+        .on('mouseup', function(e) {
+          adjustContainerOnSwipe(e);
+          isActive = false;
+        });
 
-          if (sliderPct > 1) {
-            sliderPct = 1;
-          }
-
-          adjustSlider(sliderPct);
-        }
-      });
-
-      container.find('img').on('mousedown', function(event) {
-        event.preventDefault();
-      });
-
-      $(window).trigger('resize.twentytwenty');
+      // Set dimensions if image is loaded, otherwise wait
+      if (beforeImg[0].offsetHeight === 0) {
+        beforeImg.on('load', function() {
+          var d = TT.getDimensions(beforeImg, sliderPct);
+          setDimensions(d.w, d.h, d.xOffset, d.yOffset);
+        });
+      } else {
+        var d = TT.getDimensions(beforeImg, sliderPct);
+        setDimensions(d.w, d.h, d.xOffset, d.yOffset);
+      }
     });
   };
 
