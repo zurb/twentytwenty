@@ -11,10 +11,11 @@ After seeing this plugin featured on numerous sites such as [ProductHunt](https:
   - [X] Replace Ruby/Compass with Libsass/Autoprefixer
   - [X] Replace all snake_case with camelCase
   - [X] AngularJS support
-  - [ ] See if `jquery.event.move` can be removed as a dependency
+  - [X] See if `jquery.event.move` can be removed as a dependency
   - [ ] Test plugins with other popular frameworks
   - [ ] Address all bugs reported in original GitHub repo
   - [ ] Distribute through package managers such as [bower](http://bower.io)
+  - [ ] Publish to a CDN to make it easy to get started
 
 Open up an issue if there's something else you'd like to see!
 
@@ -53,7 +54,6 @@ And then you can use the `twentytwenty` directive like so:
 ### Dependencies
 
   * [angular (~> 1.4)](https://angularjs.org/)
-  * [angular-touch](https://docs.angularjs.org/api/ngTouch)
 
 ## jQuery
 
@@ -63,7 +63,6 @@ Include the javascript and css files.
 
 ```html
 <script src="js/jquery.min.js" type="text/javascript"></script>
-<script src="js/jquery.event.move.js" type="text/javascript"></script>
 <script src="js/jquery.twentytwenty.js" type="text/javascript"></script>
 <link rel="stylesheet" href="css/twentytwenty.css" type="text/css" media="screen" />
 ``` 
@@ -127,7 +126,6 @@ $(window).load(function(){
 ### Dependencies
 
   * [jquery](http://jquery.com/)
-  * [jquery.event.move](https://github.com/stephband/jquery.event.move)
 
 ## Support
 
