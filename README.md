@@ -31,7 +31,6 @@ Include the javascript and css files.
 <script src='js/angular.js' type='text/javascript'></script>
 <script src='js/angular-touch.js' type='text/javascript'></script>
 <script src='js/angular-twentytwenty.js' type='text/javascript'></script>
-<link rel='stylesheet' href='css/twentytwenty.css' type='text/css' media='screen' />
 ```
 
 You might need to change the paths to match your setup.
@@ -121,7 +120,7 @@ $(function() {
     defaultOffsetPct: 0.9
   });
 
-$('#container1').twentytwenty({
+$('#container2').twentytwenty({
     orientation: 'vertical'
   });
 });
