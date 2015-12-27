@@ -3,3 +3,4 @@
 components/*
 *.old
 /node_modules/*
+/dist/*
