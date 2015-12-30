@@ -19,7 +19,7 @@ angular.module('tt', [])
         $scope.orientation = $scope.orientation || 'horizontal';
         $scope.offsetPct = parseFloat($scope.offset) || 0.5;
         var $beforeImg = angular.element($element.find('img')[0]);
-        var isActive = false;
+        $scope.isActive = false;
 
         var adjustContainer = function(w, h, xOffset, yOffset) {
           var offsetPct = TT.isHorizontal($scope.orientation) ?
@@ -52,17 +52,17 @@ angular.module('tt', [])
         }
 
         $element.bind('mousedown touchstart', function(e) {
-          isActive = true;
+          $scope.isActive = true;
           adjustContainerOnSwipe(e);
         });
 
         $element.bind('mousemove touchmove', function(e) {
-          if (isActive)
+          if ($scope.isActive)
             TT.fireOnMovement(adjustContainerOnSwipe, e);
         });
 
         $element.bind('mouseup touchend', function(e) {
-          isActive = false;
+          $scope.isActive = false;
           adjustContainerOnSwipe(e);
         });
 

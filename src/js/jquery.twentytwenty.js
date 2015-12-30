@@ -61,6 +61,7 @@ var TT = require('./core.js');
       container
         .on('mousedown', function(e) {
           isActive = true;
+          container.addClass("active");
           adjustContainerOnSwipe(e);
         })
         .on('mousemove', function(e) {
@@ -70,6 +71,7 @@ var TT = require('./core.js');
         })
         .on('mouseup', function(e) {
           adjustContainerOnSwipe(e);
+          container.removeClass("active");
           isActive = false;
         });
 

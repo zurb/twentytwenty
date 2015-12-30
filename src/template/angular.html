@@ -1,5 +1,5 @@
 <div class="twentytwenty-wrapper twentytwenty-{{orientation}}">
-  <div class="twentytwenty-container" style="height:{{h}}px">
+  <div class="twentytwenty-container" ng-class="{'active': isActive}" style="height:{{h}}px">
     <img class="twentytwenty-before" ng-src="{{before}}" style="clip: rect(0px, {{offset}}px, {{h}}px, 0px)" ng-if="isHorizontal">
     <img class="twentytwenty-before" ng-src="{{before}}" style="clip: rect(0px, {{w}}px, {{offset}}px, 0px)" ng-if="!isHorizontal">
     <img class="twentytwenty-after" src="{{after}}">
