@@ -4,7 +4,8 @@
       var options = $.extend({
           default_offset_pct: 0.5,
           orientation: 'horizontal',
-          overlay: true
+          overlay: true,
+          transition_in: false
       }, options);
     return this.each(function() {
 
@@ -104,7 +105,36 @@
         event.preventDefault();
       });
 
-      $(window).trigger("resize.twentytwenty");
+      container.on('goTo.twentytwenty', function (e, pos) {
+                adjustSlider(pos);
+            });
+
+            if (options.transition_in) {
+                var before = $('.twentytwenty-before').css('clip', 'rect(0px 0 ' + beforeImg.height() + 'px 0px)');
+                var handle = container.find('.twentytwenty-handle').css('left', 0);
+
+                setTimeout(function () {
+                    before.add(handle)
+                        .on('transitionEnd oTransitionEnd msTransitionEnd transitionend webkitTransitionEnd', function () {
+                            container.find('.twentytwenty-handle,.twentytwenty-before').css({
+                                'transition': 'none'
+                            });
+                        })
+                    .css({
+                        '-webkit-transition': 'all 1.5s ease',
+                        '-moz-transition': 'all 1.5s ease',
+                        'transition': 'all 1.5s ease'
+                    });
+
+                    $(window).trigger("resize.twentytwenty");
+                });
+            }
+            else {
+                $(window).trigger("resize.twentytwenty");
+            }
+
+            container.trigger('init.twentytwenty', [container]);
+        });
     });
   };
 
