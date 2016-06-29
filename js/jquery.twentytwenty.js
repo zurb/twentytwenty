@@ -5,7 +5,8 @@
           default_offset_pct: 0.5,
           orientation: 'horizontal',
           overlay: true,
-          transition_in: false
+          transition_in: false,
+          min_offset: 0
       }, options);
     return this.each(function() {
 
@@ -96,6 +97,9 @@
           }
           if (sliderPct > 1) {
             sliderPct = 1;
+          }
+          if (options.min_offset && sliderPct < options.min_offset) {
+            sliderPct = options.min_offset;
           }
           adjustSlider(sliderPct);
         }
