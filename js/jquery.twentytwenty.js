@@ -36,8 +36,8 @@
       overlay.append("<div class='twentytwenty-before-label'></div>");
       overlay.append("<div class='twentytwenty-after-label'></div>");
 
-      $(".twentytwenty-before-label").attr("data-content",beforeImgLabel);
-      $(".twentytwenty-after-label").attr("data-content",afterImgLabel);
+      overlay.find(".twentytwenty-before-label").attr("data-content",beforeImgLabel);
+      overlay.find(".twentytwenty-after-label").attr("data-content",afterImgLabel);
 
       var calcOffset = function(dimensionPct) {
         var w = beforeImg.width();
