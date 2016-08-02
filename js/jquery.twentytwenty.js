@@ -59,7 +59,9 @@
       });
 
       var offsetX = 0;
+      var offsetY = 0;
       var imgWidth = 0;
+      var imgHeight = 0;
       
       slider.on("movestart", function(e) {
         if (((e.distX > e.distY && e.distX < -e.distY) || (e.distX < e.distY && e.distX > -e.distY)) && sliderOrientation !== 'vertical') {
