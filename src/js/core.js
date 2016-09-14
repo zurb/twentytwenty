@@ -1,6 +1,8 @@
 define([], function() {
   var TT = {};
 
+  TT.version = '2.0.0-beta1';
+
   TT.isHorizontal = function(orientation) {
     return orientation === 'horizontal';
   };

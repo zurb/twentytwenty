@@ -1,37 +1,61 @@
-<!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]>    <html class="lt-ie9" lang="en"> <![endif]-->
-<!--[if IE 9 ]>    <html class="lt-ie10" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>twentytwenty</title>
-  <link href="css/demo.css" rel="stylesheet" type="text/css" />
-  <link href="../dist/css/twentytwenty.css" rel="stylesheet" type="text/css" />
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>twentytwenty | angularjs</title>
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="css/styles.css">
     <script src="js/angular.min.js"></script>
-    <script src="js/angular-touch.js"></script>
-    <script src="../dist/js/angular-twentytwenty.js"></script>
+    <script src="../dist/angular-twentytwenty.js"></script>
     <script>
       angular.module('twentytwenty-demo', ['tt']);
     </script>
-</head>
+  </head>
   <body ng-app="twentytwenty-demo">
-    <div class="tt-container">
-      <div class="tt-desc">
-        <h3>Basic Usage</h3>
-        <p>Demonstrates basic usage of the plugin.</p>
-      </div>
-      <div class="tt-example">
+    <div class="wrapper">
+      <header>
+        <h1>twentytwenty</h1>
+        <p>The best way to showcase the difference between 2 images</p>
+        <p class="view"><a href="http://github.com/orderedlist/minimal">View the Project on GitHub <small>mhayes/twentytwenty</small></a></p>
+        <ul>
+          <li><a href="https://github.com/mhayes/twentytwenty/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/mhayes/twentytwenty/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="http://github.com/mhayes/twentytwenty">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Getting started with AngularJS</h1>
+        <p>Looking for the <a href="index.html">jQuery</a> example?</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex porro in cumque suscipit animi quaerat nemo ea explicabo quo non? Totam iure iste perferendis accusantium excepturi, id commodi fugit laborum!</p>
+
+        <h2>Basic usage</h2>
+        <p>Very few options to get going!</p>
         <twentytwenty
           before="img/1_1.jpg"
           after="img/1_2.jpg"
           offset="0.3"
           orientation="horizontal">
         </twentytwenty>
-      </div>
+
+        <h2>Vertical usage</h2>
+        <p>Very few options to get going!</p>
+        <twentytwenty
+          before="img/1_1.jpg"
+          after="img/1_2.jpg"
+          offset="0.3"
+          orientation="vertical">
+        </twentytwenty>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="http://github.com/mhayes">Mark Hayes</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
     </div>
+    <script src="js/scale.fix.js"></script>
   </body>
 </html>

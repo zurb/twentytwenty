@@ -35,10 +35,13 @@ var TT = require('./core.js');
           height: h + 'px'
         });
 
-        if (TT.isHorizontal(sliderOrientation))
+        if (TT.isHorizontal(sliderOrientation)) {
           beforeImg.css('clip', 'rect(0,' + xOffset + 'px, ' + h + 'px, 0)');
-        else
+          slider.css('left', xOffset + 'px');
+        } else {
           beforeImg.css('clip', 'rect(0,' + w + 'px, ' + yOffset + 'px, 0)');
+          slider.css('top', yOffset + 'px');
+        }
       };
 
       var adjustContainerOnSwipe = function(e) {
@@ -47,7 +50,6 @@ var TT = require('./core.js');
         var offset = TT.calcOffset(container, e);
         var offsetPct = TT.isHorizontal(sliderOrientation) ? (offset.x / w) : (offset.y / h);
         var d = TT.getDimensions(beforeImg, offsetPct);
-        console.info('offset.x=', offset.x);
         if (TT.isHorizontal(sliderOrientation)) {
           beforeImg.css('clip', 'rect(0,' + offset.x + 'px, ' + d.h + 'px, 0)');
           slider.css('left', offset.x + 'px');
@@ -61,7 +63,7 @@ var TT = require('./core.js');
       container
         .on('mousedown', function(e) {
           isActive = true;
-          container.addClass("active");
+          container.addClass('active');
           adjustContainerOnSwipe(e);
         })
         .on('mousemove', function(e) {
@@ -71,7 +73,7 @@ var TT = require('./core.js');
         })
         .on('mouseup', function(e) {
           adjustContainerOnSwipe(e);
-          container.removeClass("active");
+          container.removeClass('active');
           isActive = false;
         });
 

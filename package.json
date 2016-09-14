@@ -1,12 +1,16 @@
 {
   "name": "twentytwenty",
   "description": "Visual diff plugin",
-  "version": "2.0.0-dev",
+  "version": "2.0.0-beta.1",
   "license": "MIT",
   "homepage": "http://mhayes.github.io/twentytwenty",
   "repository": {
     "type": "git",
     "url": "git://github.com/mhayes/twentytwenty.git"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --inline --hot",
+    "build": "NODE_ENV=production webpack --progress --hide-modules"
   },
   "engines": {
     "node": "4.2.1",

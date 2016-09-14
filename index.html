@@ -13,7 +13,10 @@
     <script src="demo/js/angular.min.js"></script>
     <script src="dist/angular-twentytwenty.js"></script>
     <script>
-      angular.module('twentytwenty-demo', ['tt']);
+      var app = angular.module('twentytwenty-demo', ['tt']);
+      app.controller('DemoCtrl', function($scope) {
+        $scope.orientation = 'vertical';
+      });
     </script>
   </head>
   <body ng-app="twentytwenty-demo">
@@ -28,10 +31,11 @@
           <li><a href="http://github.com/mhayes/twentytwenty">Fork On <strong>GitHub</strong></a></li>
         </ul>
       </header>
-      <section>
+      <section ng-controller="DemoCtrl">
         <twentytwenty
           before="demo/img/1_1.jpg"
-          after="demo/img/1_2.jpg">
+          after="demo/img/1_2.jpg"
+          orientation="{{orientation}}">
         </twentytwenty>
         <small>Copyright <a href="http://www.boredpanda.com/before-after-childhood-photo-recreation/?image_id=recreation-childhood-photos-before-after-10.jpg" rel="nofollow">BoredPanda</a></small>
         <hr>
