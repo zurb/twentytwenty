@@ -1,72 +1,89 @@
-<!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]>    <html class="lt-ie9" lang="en"> <![endif]-->
-<!--[if IE 9 ]>    <html class="lt-ie10" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>twentytwenty</title>
-  <link href="css/foundation.css" rel="stylesheet" type="text/css" />
-  <link href="css/twentytwenty.css" rel="stylesheet" type="text/css" />
-</head>
-  <body>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>twentytwenty by Mark Hayes</title>
 
-    <div class="row" style="margin-top: 2em;">
-      <div class="large-4 columns">
-        <h3>Basic Usage</h3>
-        <p>Demonstrates basic usage of the plugin.</p>
-      </div>
-      <div class="large-8 columns">
-        <div class="twentytwenty-container">
-          <img src="img/1_1.jpg" />
-          <img src="img/1_2.jpg" />
-        </div>
-      </div>
-    </div>
-    
-    <div class="row" style="margin-top: 2em; margin-bottom: 2em;">
-      <div class="large-4 columns">
-        <h3>Vertical Orientation</h3>
-        <p>Demonstrates sliding up and down.</p>
-      </div>
-      <div class="large-8 columns">
-        <div class="twentytwenty-container" data-orientation="vertical">
-          <img src="img/1_1.jpg" />
-          <img src="img/1_2.jpg" />
-        </div>
-      </div>
-    </div>
-
-    <div class="row" style="margin-bottom: 2em;">
-      <div class="large-4 columns">
-        <h3>Side by side</h3>
-        <p>Using multiple comparisons at once.</p>
-      </div>
-      <div class="large-4 columns">
-        <div class="twentytwenty-container">
-          <img src="img/2_1.jpg" />
-          <img src="img/2_2.jpg" />
-        </div>
-      </div>
-      <div class="large-4 columns">
-        <div class="twentytwenty-container">
-          <img src="img/3_1.jpg" />
-          <img src="img/3_2.jpg" />
-        </div>
-      </div>
-    </div>
-    
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script src="js/jquery.event.move.js"></script>
-    <script src="js/jquery.twentytwenty.js"></script>
+    <link rel="stylesheet" href="demo/css/styles.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="demo/js/angular.min.js"></script>
+    <script src="dist/angular-twentytwenty.js"></script>
     <script>
-    $(window).load(function(){
-      $(".twentytwenty-container[data-orientation!='vertical']").twentytwenty({default_offset_pct: 0.7});
-      $(".twentytwenty-container[data-orientation='vertical']").twentytwenty({default_offset_pct: 0.3, orientation: 'vertical'});
-    });
+      var app = angular.module('twentytwenty-demo', ['tt']);
+      app.controller('DemoCtrl', function($scope) {
+        $scope.orientation = 'vertical';
+      });
     </script>
+  </head>
+  <body ng-app="twentytwenty-demo">
+    <div class="wrapper">
+      <header>
+        <h1>twentytwenty</h1>
+        <p>The easiest way to highlight the differences between 2 images</p>
+        <p class="view"><a href="http://github.com/orderedlist/minimal">View the Project on GitHub <small>mhayes/twentytwenty</small></a></p>
+        <ul>
+          <li><a href="https://github.com/mhayes/twentytwenty/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/mhayes/twentytwenty/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="http://github.com/mhayes/twentytwenty">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section ng-controller="DemoCtrl">
+        <twentytwenty
+          before="demo/img/1_1.jpg"
+          after="demo/img/1_2.jpg"
+          orientation="{{orientation}}">
+        </twentytwenty>
+        <small>Copyright <a href="http://www.boredpanda.com/before-after-childhood-photo-recreation/?image_id=recreation-childhood-photos-before-after-10.jpg" rel="nofollow">BoredPanda</a></small>
+        <hr>
+
+        <p>twentytwenty works with AngularJS and jQuery. To use the plugin just include the plugin like so:</p>
+
+        <h3>AngularJS</h3>
+<pre><code>&lt;script src='angular.min.js'&gt;&lt;/script&gt;
+// Add twentytwenty after AngularJS
+&lt;script src='angular-twentytwenty.min.js'&gt;&lt;/script&gt;
+</code></pre>
+
+        <p>Then in your markup just add:</p>
+
+<pre><code>&lt;twentytwenty
+  before='path/to/before.jpg'
+  after='path/to/after.jpg'&gt;
+&lt;/twentytwenty&gt;
+</code></pre>
+
+        <h3>jQuery</h3>
+<pre><code>&lt;script src='jquery.min.js'&gt;&lt;/script&gt;
+// Add twentytwenty after jQuery
+&lt;script src='jquery.twentytwenty.min.js'&gt;&lt;/script&gt;
+</code></pre>
+
+        <p>Then in your markup just add:</p>
+
+<pre><code>&lt;div class="twentytwenty-container"&gt;
+  &lt;img src="img/1_1.jpg" /&gt;
+  &lt;img src="img/1_2.jpg" /&gt;
+&lt;/div&gt;
+</code></pre>
+
+      <p>And initialize like so:</p>
+
+<pre><code>&lt;script&gt;
+  $(function(){
+    $(".twentytwenty-container").twentytwenty();
+  });
+&lt;/script&gt;
+</code></pre>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="http://github.com/mhayes">Mark Hayes</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="demo/js/scale.fix.js"></script>
   </body>
 </html>

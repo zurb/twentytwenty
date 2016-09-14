@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>twentytwenty | jquery</title>
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>twentytwenty</h1>
+        <p>The best way to showcase the difference between 2 images</p>
+        <p class="view"><a href="http://github.com/mhayes/twentytwenty">View the Project on GitHub <small>mhayes/twentytwenty</small></a></p>
+        <ul>
+          <li><a href="https://github.com/mhayes/twentytwenty/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/mhayes/twentytwenty/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="http://github.com/mhayes/twentytwenty">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Getting started with jQuery</h1>
+        <p>Looking for the <a href="angular.html">AngularJS</a> example?</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex porro in cumque suscipit animi quaerat nemo ea explicabo quo non? Totam iure iste perferendis accusantium excepturi, id commodi fugit laborum!</p>
+
+        <h2>Basic usage</h2>
+        <p>Very few options to get going!</p>
+        <div class="twentytwenty-container" data-orientation="horizontal">
+          <img src="img/1_1.jpg" />
+          <img src="img/1_2.jpg" />
+        </div>
+
+        <h2>Vertical usage</h2>
+        <p>You can change the orientation!</p>
+        <div class="twentytwenty-container" data-orientation="vertical">
+          <img src="img/2_1.jpg" />
+          <img src="img/2_2.jpg" />
+        </div>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="http://github.com/mhayes">Mark Hayes</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="js/scale.fix.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="../dist/jquery.twentytwenty.js"></script>
+    <script>
+      $(".twentytwenty-container").twentytwenty({defaultOffsetPct: 0.3});
+    </script>
+  </body>
+</html>

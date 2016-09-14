@@ -1,0 +1,44 @@
+{
+  "name": "twentytwenty",
+  "description": "Visual diff plugin",
+  "version": "2.0.0-beta.1",
+  "license": "MIT",
+  "homepage": "http://mhayes.github.io/twentytwenty",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mhayes/twentytwenty.git"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --inline --hot",
+    "build": "NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "engines": {
+    "node": "4.2.1",
+    "npm": "2.14.7"
+  },
+  "devDependencies": {
+    "autoprefixer-loader": "^3.1.0",
+    "css-loader": "^0.23.0",
+    "html-loader": "^0.4.0",
+    "jscs": "^2.7.0",
+    "jscs-loader": "^0.2.0",
+    "jshint": "^2.8.0",
+    "jshint-loader": "^0.8.3",
+    "node-sass": "^3.4.2",
+    "sass-loader": "^3.1.2",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"
+  },
+  "autoupdate": {
+    "source": "git",
+    "target": "git://github.com/mhayes/twentytwenty.git",
+    "basePath": "/dist/",
+    "files": [
+      "jquery.twentytwenty",
+      "jquery.twentytwenty.min",
+      "angular-twentytwenty",
+      "angular-twentytwenty.min"
+    ]
+  }
+}
