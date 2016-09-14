@@ -25,5 +25,16 @@
     "style-loader": "^0.13.0",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
+  },
+  "autoupdate": {
+    "source": "git",
+    "target": "git://github.com/mhayes/twentytwenty.git",
+    "basePath": "/dist/",
+    "files": [
+      "jquery.twentytwenty",
+      "jquery.twentytwenty.min",
+      "angular-twentytwenty",
+      "angular-twentytwenty.min"
+    ]
   }
 }
