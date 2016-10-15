@@ -21,7 +21,7 @@ grunt.initConfig({
 	//watch for changes to SCSS files.
 	watch: {
 		sass: {
-			files: ['src/scss/**/*.scss'],
+			files: ['scss/**/*.scss'],
 			tasks: ['sass', 'notify:sass'],
 			
 			options: {
@@ -42,7 +42,7 @@ grunt.initConfig({
 		dev: {
 			options: {
 				port: 8888,
-				cwd: 'scrabble-tiles',
+				cwd: 'zurb-twentytwenty',
 				livereload: 35729,
 				open: {
 					target: 'http://localhost:8888/twentytwenty-no-compass.html'
