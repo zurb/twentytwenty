@@ -9,7 +9,7 @@ grunt.initConfig({
 		js: ['js'],
 	},
 
-	//Compile Foundation SCSS and custom styles SCSS files into CSS
+	//Compile TwentyTwenty SCSS file (without Compass) into CSS
 	sass: {
 		dist: {
 			files: {
@@ -38,6 +38,7 @@ grunt.initConfig({
 		}
 	},
 
+	// open local test page on port 8888 with LiveReload
 	connect: {
 		dev: {
 			options: {
