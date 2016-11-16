@@ -16,9 +16,9 @@ After including the files you are ready to create a container that holds two ima
 ```html
 <div id="container1">
  <!-- The before image is first -->
- <img src="http://placehold.it/400x200&text=1" />
+ <img src="http://placehold.it/400x200&amp;text=1" />
  <!-- The after image is last -->
- <img src="http://placehold.it/400x200&text=2" />
+ <img src="http://placehold.it/400x200&amp;text=2" />
 </div>
 ```
 
@@ -49,9 +49,9 @@ If you want to avoid a [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_con
 ```html
 <div id="container1" class="twentytwenty-container">
  <!-- The before image is first -->
- <img src="http://placehold.it/400x200&text=1" />
+ <img src="http://placehold.it/400x200&amp;text=1" />
  <!-- The after image is last -->
- <img src="http://placehold.it/400x200&text=2" />
+ <img src="http://placehold.it/400x200&amp;text=2" />
 </div>
 ```
 
