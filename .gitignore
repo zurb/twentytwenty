@@ -2,3 +2,4 @@
 .sass-cache/*
 components/*
 *.old
+node_modules
