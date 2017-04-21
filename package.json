@@ -1,16 +1,16 @@
 {
-  "name": "zurb-twentytwenty-sass-no-compass",
+  "name": "zurb-twentytwenty",
   "version": "0.1.0",
-  "description": "A fork of the Zurb TwentyTwenty plugin without any Compass dependencies",
+  "description": "Zurb TwentyTwenty plugin",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Theo Nicolaou",
+  "author": "ZURB",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/theonicolaou/twentytwenty"
+    "url": "https://github.com/zurb/twentytwenty"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
