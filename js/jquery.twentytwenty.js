@@ -1,7 +1,13 @@
 (function($){
 
   $.fn.twentytwenty = function(options) {
-    var options = $.extend({default_offset_pct: 0.5, orientation: 'horizontal'}, options);
+      var options = $.extend({
+          default_offset_pct: 0.5,
+          orientation: 'horizontal',
+          overlay: true,
+          transition_in: false,
+          min_offset: 0
+      }, options);
     return this.each(function() {
 
       var sliderPct = options.default_offset_pct;
@@ -12,7 +18,9 @@
       
       
       container.wrap("<div class='twentytwenty-wrapper twentytwenty-" + sliderOrientation + "'></div>");
-      container.append("<div class='twentytwenty-overlay'></div>");
+      if (options.overlay) {
+          container.append("<div class='twentytwenty-overlay'></div>");
+      }
       var beforeImg = container.find("img:first");
       var afterImg = container.find("img:last");
       container.append("<div class='twentytwenty-handle'></div>");
@@ -23,9 +31,11 @@
       beforeImg.addClass("twentytwenty-before");
       afterImg.addClass("twentytwenty-after");
       
-      var overlay = container.find(".twentytwenty-overlay");
-      overlay.append("<div class='twentytwenty-before-label'></div>");
-      overlay.append("<div class='twentytwenty-after-label'></div>");
+      if (options.overlay) {
+          var overlay = container.find(".twentytwenty-overlay");
+          overlay.append("<div class='twentytwenty-before-label'></div>");
+          overlay.append("<div class='twentytwenty-after-label'></div>");
+      }
 
       var calcOffset = function(dimensionPct) {
         var w = beforeImg.width();
@@ -90,6 +100,9 @@
           if (sliderPct > 1) {
             sliderPct = 1;
           }
+          if (options.min_offset && sliderPct < options.min_offset) {
+            sliderPct = options.min_offset;
+          }
           adjustSlider(sliderPct);
         }
       });
@@ -98,7 +111,36 @@
         event.preventDefault();
       });
 
-      $(window).trigger("resize.twentytwenty");
+      container.on('goTo.twentytwenty', function (e, pos) {
+                adjustSlider(pos);
+            });
+
+            if (options.transition_in) {
+                var before = $('.twentytwenty-before').css('clip', 'rect(0px 0 ' + beforeImg.height() + 'px 0px)');
+                var handle = container.find('.twentytwenty-handle').css('left', 0);
+
+                setTimeout(function () {
+                    before.add(handle)
+                        .on('transitionEnd oTransitionEnd msTransitionEnd transitionend webkitTransitionEnd', function () {
+                            container.find('.twentytwenty-handle,.twentytwenty-before').css({
+                                'transition': 'none'
+                            });
+                        })
+                    .css({
+                        '-webkit-transition': 'all 1.5s ease',
+                        '-moz-transition': 'all 1.5s ease',
+                        'transition': 'all 1.5s ease'
+                    });
+
+                    $(window).trigger("resize.twentytwenty");
+                });
+            }
+            else {
+                $(window).trigger("resize.twentytwenty");
+            }
+
+            container.trigger('init.twentytwenty', [container]);
+        });
     });
   };
 
