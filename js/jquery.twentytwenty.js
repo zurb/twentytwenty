@@ -2,6 +2,11 @@
 
   $.fn.twentytwenty = function(options) {
     var options = $.extend({default_offset_pct: 0.5, orientation: 'horizontal'}, options);
+
+    $(window).load(function() {
+      $(window).trigger("resize.twentytwenty");
+    });
+
     return this.each(function() {
 
       var sliderPct = options.default_offset_pct;
