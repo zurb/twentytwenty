@@ -1,12 +1,14 @@
 (function($){
 
   $.fn.twentytwenty = function(options) {
-    var options = $.extend({default_offset_pct: 0.5, orientation: 'horizontal'}, options);
+    var options = $.extend({default_offset_pct: 0.5, orientation: 'horizontal', before: "Before", after: "After"}, options);
     return this.each(function() {
 
       var sliderPct = options.default_offset_pct;
       var container = $(this);
       var sliderOrientation = options.orientation;
+      var beforeText = options.before;
+      var afterText = options.after;
       var beforeDirection = (sliderOrientation === 'vertical') ? 'down' : 'left';
       var afterDirection = (sliderOrientation === 'vertical') ? 'up' : 'right';
       
