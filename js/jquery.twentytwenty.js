@@ -1,7 +1,7 @@
 (function($){
 
   $.fn.twentytwenty = function(options) {
-    var options = $.extend({default_offset_pct: 0.5, orientation: 'horizontal', before_label: 'Before', after_label: 'After'}, options);
+    var options = $.extend({default_offset_pct: 0.5, orientation: 'horizontal', before_label: 'Before', after_label: 'After', no_overlay: false}, options);
     return this.each(function() {
 
       var sliderPct = options.default_offset_pct;
@@ -9,10 +9,12 @@
       var sliderOrientation = options.orientation;
       var beforeDirection = (sliderOrientation === 'vertical') ? 'down' : 'left';
       var afterDirection = (sliderOrientation === 'vertical') ? 'up' : 'right';
-      
-      
+
+
       container.wrap("<div class='twentytwenty-wrapper twentytwenty-" + sliderOrientation + "'></div>");
-      container.append("<div class='twentytwenty-overlay'></div>");
+      if(!options.no_overlay) {
+        container.append("<div class='twentytwenty-overlay'></div>");
+      }
       var beforeImg = container.find("img:first");
       var afterImg = container.find("img:last");
       container.append("<div class='twentytwenty-handle'></div>");
