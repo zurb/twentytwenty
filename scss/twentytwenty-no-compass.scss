@@ -143,7 +143,7 @@ $twenty20-label-radius: 2px !default;
   &:before {
     @extend %label-structure;
     @extend %label-text;
-    content: "Before";
+    content: attr(data-content);
   }
 }
 
@@ -157,7 +157,7 @@ $twenty20-label-radius: 2px !default;
   &:before {
     @extend %label-structure;
     @extend %label-text;
-    content: "After";
+    content: attr(data-content);
   }
 }
 
