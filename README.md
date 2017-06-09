@@ -39,7 +39,8 @@ $(window).load(function(){
     default_offset_pct: 0.7, // How much of the before image is visible when the page loads
     orientation: 'vertical', // Orientation of the before and after images ('horizontal' or 'vertical')
     before_label: 'January 2017', // Set a custom before label
-    after_label: 'March 2017' // Set a custom after label
+    after_label: 'March 2017', // Set a custom after label
+    no_overlay: true //Do not show the overlay with before and after
   });
 });
 ```
