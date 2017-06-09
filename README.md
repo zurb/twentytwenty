@@ -3,7 +3,7 @@
 Include the javascript and css files.
 
 ```html
-<script src="js/jquery-2.1.0.min.js" type="text/javascript"></script>
+<script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="js/jquery.event.move.js" type="text/javascript"></script>
 <script src="js/jquery.twentytwenty.js" type="text/javascript"></script>
 <link rel="stylesheet" href="css/twentytwenty.css" type="text/css" media="screen" />
@@ -25,7 +25,7 @@ After including the files you are ready to create a container that holds two ima
 Now initialize the plugin on the window load:
 
 ```
-$(window).load(function(){
+$(function(){
   $("#container1").twentytwenty();
 });
 ```
@@ -34,7 +34,7 @@ $(window).load(function(){
 
 
 ```js
-$(window).load(function(){
+$(function(){
   $(".twentytwenty-container").twentytwenty({
     default_offset_pct: 0.7, // How much of the before image is visible when the page loads
     orientation: 'vertical', // Orientation of the before and after images ('horizontal' or 'vertical')
@@ -63,7 +63,7 @@ If you want to avoid a [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_con
 If you want to use multiple instances of this plugin on a single page you can target the container class:
 
 ```js
-$(window).load(function(){
+$(function(){
   $(".twentytwenty-container").twentytwenty();
 });
 ```
