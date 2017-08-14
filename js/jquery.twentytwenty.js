@@ -97,6 +97,10 @@
           adjustSlider(sliderPct);
         }
       });
+      
+      slider.on("touchmove", function(e) {
+        e.preventDefault();
+      });
 
       container.find("img").on("mousedown", function(event) {
         event.preventDefault();
