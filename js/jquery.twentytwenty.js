@@ -106,6 +106,8 @@
         event.preventDefault();
       });
 
+      slider.on("touchmove", function(event) {});
+
       $(window).trigger("resize.twentytwenty");
     });
   };
