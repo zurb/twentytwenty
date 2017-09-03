@@ -41,6 +41,7 @@ $(function(){
     before_label: 'January 2017', // Set a custom before label
     after_label: 'March 2017', // Set a custom after label
     no_overlay: true //Do not show the overlay with before and after
+    move_slider_on_hover: true // Move slider on mouse hover?
   });
 });
 ```
