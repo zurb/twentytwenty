@@ -80,7 +80,7 @@
 
 	var eventOptions = { bubbles: true, cancelable: true };
 
-	var eventsSymbol = Symbol('events');
+	var eventsSymbol = typeof Symbol === "function" ? Symbol('events') : {};
 
 	function createEvent(type) {
 		return new CustomEvent(type, eventOptions);
