@@ -1,7 +1,17 @@
 (function($){
 
   $.fn.twentytwenty = function(options) {
-    var options = $.extend({default_offset_pct: 0.5, orientation: 'horizontal', before_label: 'Before', after_label: 'After', no_overlay: false, move_slider_on_hover: false}, options);
+    var options = $.extend({
+      default_offset_pct: 0.5,
+      orientation: 'horizontal',
+      before_label: 'Before',
+      after_label: 'After',
+      no_overlay: false,
+      move_slider_on_hover: false,
+      move_with_handle_only: true,
+      click_to_move: false
+    }, options);
+
     return this.each(function() {
 
       var sliderPct = options.default_offset_pct;
@@ -58,6 +68,21 @@
         adjustContainer(offset);
       };
 
+      // Return the number specified or the min/max number if it outside the range given.
+      var minMaxNumber = function(num, min, max) {
+        return Math.max(min, Math.min(max, num));
+      };
+
+      // Calculate the slider percentage based on the position.
+      var getSliderPercentage = function(positionX, positionY) {
+        var sliderPercentage = (sliderOrientation === 'vertical') ?
+          (positionY-offsetY)/imgHeight :
+          (positionX-offsetX)/imgWidth;
+
+        return minMaxNumber(sliderPercentage, 0, 1);
+      };
+
+
       $(window).on("resize.twentytwenty", function(e) {
         adjustSlider(sliderPct);
       });
@@ -81,13 +106,7 @@
       };
       var onMove = function(e) {
         if (container.hasClass("active")) {
-          sliderPct = (sliderOrientation === 'vertical') ? (e.pageY-offsetY)/imgHeight : (e.pageX-offsetX)/imgWidth;
-          if (sliderPct < 0) {
-            sliderPct = 0;
-          }
-          if (sliderPct > 1) {
-            sliderPct = 1;
-          }
+          sliderPct = getSliderPercentage(e.pageX, e.pageY);
           adjustSlider(sliderPct);
         }
       };
@@ -100,9 +119,10 @@
         container.on("mousemove", onMove);
         container.on("mouseleave", onMoveEnd);
       } else {
-        slider.on("movestart",onMoveStart);
-        slider.on("move",onMove);
-        slider.on("moveend",onMoveEnd);
+        var moveTarget = options.move_with_handle_only ? slider : container;
+        moveTarget.on("movestart",onMoveStart);
+        moveTarget.on("move",onMove);
+        moveTarget.on("moveend",onMoveEnd);
       }
 
       slider.on("touchmove", function(e) {
@@ -112,6 +132,18 @@
       container.find("img").on("mousedown", function(event) {
         event.preventDefault();
       });
+
+      if (options.click_to_move) {
+        container.on('click', function(e) {
+          offsetX = container.offset().left;
+          offsetY = container.offset().top;
+          imgWidth = beforeImg.width();
+          imgHeight = beforeImg.height();
+
+          sliderPct = getSliderPercentage(e.pageX, e.pageY);
+          adjustSlider(sliderPct);
+        });
+      }
 
       $(window).trigger("resize.twentytwenty");
     });

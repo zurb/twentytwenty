@@ -42,6 +42,8 @@ $(function(){
     after_label: 'March 2017', // Set a custom after label
     no_overlay: true //Do not show the overlay with before and after
     move_slider_on_hover: true // Move slider on mouse hover?
+    move_with_handle_only: true, // Allow a user to swipe anywhere on the image to control slider movement. 
+    click_to_move: false // Allow a user to click (or tap) anywhere on the image to move the slider to that location.
   });
 });
 ```
