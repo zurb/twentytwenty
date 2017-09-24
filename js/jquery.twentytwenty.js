@@ -7,6 +7,7 @@
       before_label: 'Before',
       after_label: 'After',
       no_overlay: false,
+      move_slider_on_hover: false,
       move_with_handle_only: true,
       click_to_move: false
     }, options);
@@ -90,10 +91,7 @@
       var offsetY = 0;
       var imgWidth = 0;
       var imgHeight = 0;
-
-      var moveTarget = options.move_with_handle_only ? slider : container;
-
-      moveTarget.on("movestart", function(e) {
+      var onMoveStart = function(e) {
         if (((e.distX > e.distY && e.distX < -e.distY) || (e.distX < e.distY && e.distX > -e.distY)) && sliderOrientation !== 'vertical') {
           e.preventDefault();
         }
@@ -103,22 +101,31 @@
         container.addClass("active");
         offsetX = container.offset().left;
         offsetY = container.offset().top;
-        imgWidth = beforeImg.width();
-        imgHeight = beforeImg.height();
-      });
-
-      moveTarget.on("moveend", function(e) {
-        container.removeClass("active");
-      });
-
-      moveTarget.on("move", function(e) {
+        imgWidth = beforeImg.width(); 
+        imgHeight = beforeImg.height();          
+      };
+      var onMove = function(e) {
         if (container.hasClass("active")) {
           sliderPct = getSliderPercentage(e.pageX, e.pageY);
           adjustSlider(sliderPct);
         }
-      });
+      };
+      var onMoveEnd = function() {
+          container.removeClass("active");
+      };
 
-      moveTarget.on("touchmove", function(e) {
+      var moveTarget = options.move_with_handle_only ? slider : container;
+      moveTarget.on("movestart",onMoveStart);
+      moveTarget.on("move",onMove);
+      moveTarget.on("moveend",onMoveEnd);
+
+      if (options.move_slider_on_hover) {
+        container.on("mouseenter", onMoveStart);
+        container.on("mousemove", onMove);
+        container.on("mouseleave", onMoveEnd);
+      }
+
+      slider.on("touchmove", function(e) {
         e.preventDefault();
       });
 
