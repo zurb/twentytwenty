@@ -226,8 +226,10 @@ $twenty20-label-radius: 2px !default;
   border-radius: $twenty20-handle-radius;
   box-shadow: $twenty20-handle-box-shadow;
   z-index: 40;
-  cursor: pointer;
+  cursor: grab;
 }
+
+.#{$pluginPrefix}-handle:active { cursor: grabing; }
 
 // 20/20 Horizontal Handle Styles
 .#{$pluginPrefix}-horizontal .#{$pluginPrefix}-handle {
