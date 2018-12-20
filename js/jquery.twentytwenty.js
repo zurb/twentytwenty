@@ -44,8 +44,8 @@
         return {
           w: w+"px",
           h: h+"px",
-          cw: (dimensionPct*w)+"px",
-          ch: (dimensionPct*h)+"px"
+          cw: Math.round(dimensionPct*w)+"px",
+          ch: Math.round(dimensionPct*h)+"px"
         };
       };
 
