@@ -1,2 +1,2 @@
-import "./js/jquery.event.move.js";
-import "./js/jquery.twentytwenty.js";
+require("./js/jquery.event.move.js");
+require("./js/jquery.twentytwenty.js");
