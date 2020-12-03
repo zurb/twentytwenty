@@ -67,9 +67,36 @@
     <script src="js/jquery.twentytwenty.js"></script>
     <script>
     $(function(){
-      $(".twentytwenty-container[data-orientation!='vertical']").twentytwenty({default_offset_pct: 0.7});
-      $(".twentytwenty-container[data-orientation='vertical']").twentytwenty({default_offset_pct: 0.3, orientation: 'vertical'});
+      var horizontial2020s = $(".twentytwenty-container[data-orientation!='vertical']").twentytwenty({default_offset_pct: 0.7})
+      var vertical2020s = $(".twentytwenty-container[data-orientation='vertical']").twentytwenty({default_offset_pct: 0.3, orientation: 'vertical'})
+
+      $(horizontial2020s).each((index, twt)=>{
+        console.log(twt)
+        twt.onMoveStart = function(e, x){
+          console.log('onMoveStart', e, x)
+        }
+        // twt.onMove = function(e, x){
+        //   console.log('onMove', e, x)
+        // }
+        twt.onMoveEnd = function(e, x){
+          console.log('onMoveEnd', e, x)
+        }
+      })
+      $(vertical2020s).each((index, twt)=>{
+        console.log(twt)
+        twt.onMoveStart = function(e, x){
+          console.log('onMoveStart', e, x)
+        }
+        // twt.onMove = function(e, x){
+        //   console.log('onMove', e, x)
+        // }
+        twt.onMoveEnd = function(e, x){
+          console.log('onMoveEnd', e, x)
+        }
+      })
+
     });
     </script>
+
   </body>
 </html>

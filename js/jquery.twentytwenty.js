@@ -16,6 +16,7 @@
 
       var sliderPct = options.default_offset_pct;
       var container = $(this);
+      var target = container[0];
       var sliderOrientation = options.orientation;
       var beforeDirection = (sliderOrientation === 'vertical') ? 'down' : 'left';
       var afterDirection = (sliderOrientation === 'vertical') ? 'up' : 'right';
@@ -37,7 +38,7 @@
       container.addClass("twentytwenty-container");
       beforeImg.addClass("twentytwenty-before");
       afterImg.addClass("twentytwenty-after");
-      
+
       var calcOffset = function(dimensionPct) {
         var w = beforeImg.width();
         var h = beforeImg.height();
@@ -67,6 +68,8 @@
         adjustContainer(offset);
       };
 
+      this.adjustSlider = adjustSlider;
+
       // Return the number specified or the min/max number if it outside the range given.
       var minMaxNumber = function(num, min, max) {
         return Math.max(min, Math.min(max, num));
@@ -90,7 +93,12 @@
       var offsetY = 0;
       var imgWidth = 0;
       var imgHeight = 0;
+
       var onMoveStart = function(e) {
+        if (target && target.onMoveStart) {
+          sliderPct = getSliderPercentage(e.pageX, e.pageY);
+          target.onMoveStart(e, sliderPct)
+        }
         if (((e.distX > e.distY && e.distX < -e.distY) || (e.distX < e.distY && e.distX > -e.distY)) && sliderOrientation !== 'vertical') {
           e.preventDefault();
         }
@@ -100,17 +108,26 @@
         container.addClass("active");
         offsetX = container.offset().left;
         offsetY = container.offset().top;
-        imgWidth = beforeImg.width(); 
-        imgHeight = beforeImg.height();          
+        imgWidth = beforeImg.width();
+        imgHeight = beforeImg.height();
       };
+
       var onMove = function(e) {
+        sliderPct = getSliderPercentage(e.pageX, e.pageY);
         if (container.hasClass("active")) {
-          sliderPct = getSliderPercentage(e.pageX, e.pageY);
           adjustSlider(sliderPct);
         }
+        if (target && target.onMove) {
+          target.onMove(e, sliderPct)
+        }
       };
-      var onMoveEnd = function() {
-          container.removeClass("active");
+
+      var onMoveEnd = function(e) {
+        container.removeClass("active");
+        if (target && target.onMoveEnd) {
+          sliderPct = getSliderPercentage(e.pageX, e.pageY);
+          target.onMoveEnd(e, sliderPct)
+        }
       };
 
       var moveTarget = options.move_with_handle_only ? slider : container;
@@ -145,6 +162,7 @@
       }
 
       $(window).trigger("resize.twentytwenty");
+      return this;
     });
   };
 
