@@ -70,8 +70,7 @@
     $(function(){
       var horizontial2020s = $(".twentytwenty-container[data-orientation!='vertical']").twentytwenty({default_offset_pct: 0.7})
       var vertical2020s = $(".twentytwenty-container[data-orientation='vertical']").twentytwenty({default_offset_pct: 0.3, orientation: 'vertical'})
-      // console.log('horizontial2020s: ', horizontial2020s);
-      // console.log('vertical2020s: ', vertical2020s);
+
       $(horizontial2020s).each((index, twt)=>{
         console.log(twt)
         twt.onMoveStart = function(e, x){
