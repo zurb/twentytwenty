@@ -113,8 +113,8 @@
       };
 
       var onMove = function(e) {
+        sliderPct = getSliderPercentage(e.pageX, e.pageY);
         if (container.hasClass("active")) {
-          sliderPct = getSliderPercentage(e.pageX, e.pageY);
           adjustSlider(sliderPct);
         }
         if (target && target.onMove) {
@@ -124,8 +124,8 @@
 
       var onMoveEnd = function(e) {
         container.removeClass("active");
-        sliderPct = getSliderPercentage(e.pageX, e.pageY);
         if (target && target.onMoveEnd) {
+          sliderPct = getSliderPercentage(e.pageX, e.pageY);
           target.onMoveEnd(e, sliderPct)
         }
       };
